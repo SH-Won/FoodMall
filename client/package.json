@@ -1,6 +1,7 @@
 {
   "name": "client",
   "version": "1.0.0",
+  "private":true,
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -26,7 +27,9 @@
     "redux": "^4.0.5",
     "redux-promise": "^0.6.0",
     "redux-thunk": "^2.3.0",
-    "yup": "^0.32.9"
+    "yup": "^0.32.9",
+    "webpack": "^5.31.2",
+    "webpack-cli": "^4.6.0"
   },
   "devDependencies": {
     "@babel/core": "^7.13.15",
