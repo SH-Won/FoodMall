@@ -60,7 +60,7 @@ router.get('/getPosts',(req,res)=>{
   // let limit = req.body.limit? parseInt(req.body.limit) : 100;
    //let skip = parseInt(req.body.skip);
    //let findArgs ={};
-   let filter = JSON.parse(req.query.filter);
+   let filter = req.query.filter ? JSON.parse(req.query.filter) : '';
    let findArgs={};
    for(let key in filter){
        if(filter[key].length > 0){

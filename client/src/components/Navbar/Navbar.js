@@ -18,6 +18,9 @@ const Navbar = (props) => {
             }
         })
     }
+    const showBarList = ()=>{
+        
+    }
 
     if(user.userData && !user.userData.isAuth){
         return(
@@ -26,7 +29,7 @@ const Navbar = (props) => {
             <div className="navbar-list">
             <ul className="navbar-left-list">
                 <li><a href="/">홈</a></li>
-                <li>좋아요</li>
+                <li><a href="/board">좋아요</a></li>
                 
             </ul>
             
@@ -46,7 +49,7 @@ const Navbar = (props) => {
             <div className="navbar-list">
             <ul className="navbar-left-list">
                 <li><a href="/">홈</a></li>
-                <li>좋아요</li>
+                <li><a href="/board">좋아요</a></li>
                 
             </ul>
             

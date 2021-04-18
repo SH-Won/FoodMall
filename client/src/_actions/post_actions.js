@@ -45,8 +45,8 @@ export  function getFirstPosts(variable){
 
     const request=  axios.get('/api/posts/getPosts',{params:{
         skip:variable.skip,
-        limit:variable.limit,
-        filter:variable.filter
+        limit:variable.limit ? variable.limit : 100,
+        filter:variable.filter ? variable.filter : '',
     }},)
     .then(response=> response.data );
 

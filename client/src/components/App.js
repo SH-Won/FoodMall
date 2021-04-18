@@ -23,6 +23,7 @@ const LandingPage = lazy (()=> import('./views/LandingPage/LandingPage'));
 const UploadContainer = lazy (()=> import('./views/UploadPage/UploadContainer'));
 const DetailPostPage = lazy (()=> import('./views/DetailPostPage/DetailPostPage'));
 const CartPage = lazy (()=> import('./views/CartPage/CartPage'));
+const Board = lazy (()=> import('./views/Board/Board'));
 
 function App() {
   return (
@@ -36,7 +37,7 @@ function App() {
           <Route exact path="/upload" component={Auth(UploadContainer, true)} />
           <Route exact path="/post/:postId" component={Auth(DetailPostPage,null)} />
           <Route exact path="/cart" component={Auth(CartPage,true)} />
-          
+          <Route exact path="/board" component={Auth(Board,null)} />
         </Switch>
       </div>
       <Footer />
