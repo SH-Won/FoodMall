@@ -7,31 +7,40 @@ import Post_Information from './Presenter/Post_Information';
 import CartButton from './Presenter/CartButton';
 import CommentPage from '../CommentPage/CommentPage';
 import './DetailPost.css';
+import axios from 'axios';
+import Tab from './Tab/Tab';
+import {Switch,Route} from 'react-router-dom';
+
 
 
 const DetailPostPage = (props) => {
     const dispatch = useDispatch();
     const postId = props.match.params.postId;
+    console.log(props.match);
+    const [post,setPost] = useState()
     
-    const [CurrentImage,setCurrentImage]=useState();
+    //const [CurrentImage,setCurrentImage]=useState();
     
     useEffect(()=>{
-
-        dispatch(getPostDetail(postId));
+        getDetailPost()
+        .then(data => setPost(data))
     },[])
-    const post = useSelector(state=>state.post.postDetail[0]);
+   // const post = useSelector(state=>state.post.postDetail[0]);
    
+    const getDetailPost= ()=>{
+        const data = axios.get(`/api/posts/getPostDetail?postId=${postId}&type=single`)
+        .then(response => response.data[0])
 
+        return data;
+    }
+/*
     useEffect(()=>{
         post &&
         setCurrentImage(post.images[0]);
 
     },[post])
-    
-    const selectImage = (image)=>{
-        setCurrentImage(image);
-
-    }
+    */
+   
     const addtoCart =()=>{
         console.log('클릭');
 
@@ -40,18 +49,21 @@ const DetailPostPage = (props) => {
         alert('장바구니에 추가했습니다')
     }
 
+    const commentPage = <CommentPage postId={postId}/>
+
     return (
         <div className="detail-post-wrap">
             
             {post &&
             <div className="wrap-all">
-            <Post_Image images={post.images} currentImage={CurrentImage} selectImage={selectImage} />
+            <Post_Image post={post} />
             <Post_Information post={post}/>
             </div>
             }
             <CartButton addtoCart={addtoCart}/>
-            <CommentPage postId={postId}/>
+            
 
+            <Tab post={post} postId={postId} match={props.match}/>
         </div>
     )
 }

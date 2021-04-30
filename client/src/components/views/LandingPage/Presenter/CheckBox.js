@@ -1,7 +1,8 @@
-import React from 'react'
+import React,{useState} from 'react'
 
-const CheckBox = ({category,isChecked,toggleChecked}) => {
+const CheckBox = (props) => {
 
+    const {category,isChecked,toggleChecked} = props;
 
     return (
         <div className="checkbox-wrap">

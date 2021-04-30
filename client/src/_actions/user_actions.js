@@ -49,7 +49,7 @@ export function logoutUser(){
         payload: request
     }
 }
-
+/*
 export function addCartItem(postId){
     const request = axios.get(`${USER_SERVER}/addCartItem?postId=${postId}`)
     .then(response=>response.data)
@@ -99,4 +99,54 @@ export function removeCartItem(postId){
     }
 
 }
+*/
+
+
+
+
+export function addCartItem(postId){
+    const request = axios.get(`${USER_SERVER}/addCartItem?postId=${postId}`)
+    .then(response=>response.data)
+
+    return{
+        type:ADD_CART_ITEM,
+        payload:request
+    }
+}
+
+export function getCartItemDetail(postIds,userCart){
+    const request = axios.get(`/api/posts/getCartItemDetail?postIds=${postIds}&type=array`)
+    .then(response=>{
+        userCart.forEach(cart=>{
+            response.data.forEach((post,index)=>{
+                if(post._id === cart.id)
+                response.data[index].quantity = cart.quantity
+            })
+        })
+        return response.data
+    })
+
+    return{
+        type:GET_CART_ITEM_DETAIL,
+        payload:request
+    }
+}
+
+export function removeCartItem(postId){
+    const request = axios.get(`${USER_SERVER}/removeCartItem?postId=${postId}`)
+    .then(response=>{
+        response.data.cart.forEach(item=>{
+            response.data.posts.forEach((post,index)=>{
+                if(post._id === item.id)
+                response.data.posts[index].quantity=item.quantity
+            })
+        })
+        return response.data
+    })
+    return{
+        type:REMOVE_CART_ITEM,
+        payload:request
+    }
+}
+
 

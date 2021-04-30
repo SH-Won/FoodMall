@@ -22,7 +22,7 @@ const Cart_Item = ({items,deleteCartItem}) => {
                             <td>{item.title}</td>
                             <td>{item.quantity} 개</td>
                             <td>{item.price}</td>
-                            <td><button onClick={()=>deleteCartItem(item._id)}>삭제</button></td>
+                            <td><button onClick={()=> deleteCartItem(item._id)}>삭제</button></td>
                         </tr>
                     ))}
                 </tbody>

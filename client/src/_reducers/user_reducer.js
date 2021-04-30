@@ -39,7 +39,7 @@ export default function(state={},action){
                     ...state.userData,
                     cart:action.payload.cart
                 },
-                cartDetail:action.payload.cartDetail
+                cartDetail:action.payload.posts
             }
         default:
             return state;

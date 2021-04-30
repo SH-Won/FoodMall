@@ -53,6 +53,7 @@ router.post('/uploadPost',(req,res)=>{
 })
 
 router.get('/getPosts',(req,res)=>{
+   console.log('searchValue',req.query.searchValue);
    let skip = req.query.skip ? parseInt(req.query.skip) : Number(0);
    let limit = req.query.limit ? parseInt(req.query.limit) : 100; 
    //let order = req.body.order ? req.body.order :'desc';
@@ -61,6 +62,7 @@ router.get('/getPosts',(req,res)=>{
    //let skip = parseInt(req.body.skip);
    //let findArgs ={};
    let filter = req.query.filter ? JSON.parse(req.query.filter) : '';
+   let searchValue = req.query.searchValue ? req.query.searchValue :'';
    let findArgs={};
    for(let key in filter){
        if(filter[key].length > 0){
@@ -78,15 +80,30 @@ router.get('/getPosts',(req,res)=>{
    //console.log(filter);
    //console.log(typeof filter)
    // findArgs = { category : [1,2,3,4,5,6 ...] }
+   if(searchValue){
    Post.find(findArgs)
+   .find({$text:{$search:searchValue}})
    .skip(skip)
    .limit(limit)
    .populate('writer')
    .exec((err,posts)=>{
        if (err) res.json({success:false,err})
        res.json(posts);
-       console.log(posts);
+      
    })
+   }
+   else{
+    Post.find(findArgs)
+    .skip(skip)
+    .limit(limit)
+    .populate('writer')
+    .exec((err,posts)=>{
+        if (err) res.json({success:false,err})
+        res.json(posts);
+       
+    })
+       
+   }
 })
 
 router.get('/getPostDetail',(req,res)=>{
@@ -105,6 +122,25 @@ router.get('/getPostDetail',(req,res)=>{
         if(err) res.status(400).json({success:false,err})
         res.status(200).json(post);
         console.log(post);
+    })
+})
+
+
+router.get('/getCartItemDetail',(req,res)=>{
+    let type = req.query.type;
+    let postIds = req.query.postIds;
+
+    if(type === 'array'){
+        let ids = req.query.postIds.split(',');
+        postIds=[];
+        postIds=ids.map(id=>id);
+    }
+
+    Post.find({_id:{$in:postIds}})
+    .populate('writer')
+    .exec((err,posts)=>{
+        if(err) res.status(400).json(err)
+        res.status(200).json(posts)
     })
 })
 

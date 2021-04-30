@@ -68,6 +68,7 @@ router.get("/logout", auth, (req, res) => {
         });
     });
 });
+/*
 router.get('/addCartItem',auth,(req,res)=>{
     
 
@@ -135,4 +136,70 @@ router.get('/removeCartItem',auth,(req,res)=>{
         }
     )
 })
+*/
+
+
+router.get('/addCartItem',auth,(req,res)=>{
+    User.findOne(
+        {_id:req.user._id},
+        (err,userInfo)=>{
+            let isExist = false;
+            userInfo.cart.forEach(cart=>{
+                if(cart.id === req.query.postId)
+                isExist = true
+            })
+
+            if(isExist){
+                User.findOneAndUpdate(
+                    {_id:req.user._id,'cart.id':req.query.postId},
+                    {$inc:{'cart.$.quantity':1}},
+                    {new:true},
+                    ()=>{
+                        if(err) res.status(400).json(err)
+                        res.status(200).json(userInfo.cart)
+                    }
+                )
+            }
+            else{
+                User.findOneAndUpdate(
+                    {_id:req.user._id},
+                    {$push:{
+                        cart:{
+                            id:req.query.postId,
+                            quantity:1,
+                            date:Date.now()
+                        }
+                    }},
+                    {new:true},
+                    (err,userInfo)=>{
+                          if(err) res.status(400).json(err)
+                          res.status(200).json(userInfo.cart)
+                    }
+                )
+            }
+
+        })
+})
+router.get('/removeCartItem',auth,(req,res)=>{
+    User.findOneAndUpdate(
+        {_id:req.user._id},
+        {$pull:{
+            cart:{
+                id:req.query.postId
+            }
+        }},
+        {new:true},
+        (err,userInfo)=>{
+            let cart = userInfo.cart;
+            let ids = cart.map(item => item.id);
+            Post.find({_id:{$in:ids}})
+            .populate('writer')
+            .exec((err,posts)=>{
+                if(err) res.status(400).json(err)
+                res.status(200).json({cart,posts})
+            })
+        }
+        )
+})
+
 module.exports = router;

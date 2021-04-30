@@ -44,6 +44,18 @@ const postSchema = mongoose.Schema({
     
 },{timestamps:true})
 
+postSchema.index({
+    title:'text',
+    description:'text',
+},{
+    weights:{
+        title:5,
+        description:1,
+    }
+
+})
+
+
 const Post = mongoose.model('Post', postSchema);
 
 module.exports = { Post }

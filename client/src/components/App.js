@@ -24,18 +24,20 @@ const UploadContainer = lazy (()=> import('./views/UploadPage/UploadContainer'))
 const DetailPostPage = lazy (()=> import('./views/DetailPostPage/DetailPostPage'));
 const CartPage = lazy (()=> import('./views/CartPage/CartPage'));
 const Board = lazy (()=> import('./views/Board/Board'));
+const Tab = lazy (()=> import('./views/DetailPostPage/Tab/Tab'))
 
 function App() {
   return (
     <Suspense fallback={(<div>Loading...</div>)}>
       <Navbar />
-      <div style={{ paddingTop: '69px', minHeight: 'calc(100vh - 80px)' }}>
+      <div style={{ paddingTop: '0px', minHeight: 'calc(100vh - 80px)' }}>
         <Switch>
           <Route exact path="/" component={Auth(LandingPage, null)} />
           <Route exact path="/login" component={Auth(LoginPage, false)} />
           <Route exact path="/register" component={Auth(RegisterPage, false)} />
           <Route exact path="/upload" component={Auth(UploadContainer, true)} />
           <Route exact path="/post/:postId" component={Auth(DetailPostPage,null)} />
+          
           <Route exact path="/cart" component={Auth(CartPage,true)} />
           <Route exact path="/board" component={Auth(Board,null)} />
         </Switch>

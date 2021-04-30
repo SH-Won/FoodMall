@@ -12,6 +12,7 @@ const RootComment = ({comment,onSubmitComment}) => {
         
         setShowReply(!ShowReply);
     }
+    
     useEffect(()=>{
         setShowReply(false);
         setReplyCommentValue('');

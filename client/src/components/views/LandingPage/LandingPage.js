@@ -5,30 +5,60 @@ import LandingCard from './Presenter/LandingCard';
 import CheckBox from './Presenter/CheckBox';
 import './Landing.css'
 import {category} from './Data';
+import axios from 'axios';
+import SearchBar from './Presenter/SearchBar';
 
 
 const LandingPage = () => {
     const dispatch = useDispatch();
-    const posts = useSelector(state=>state.post.posts);
+   // const posts = useSelector(state=>state.post.posts);
    
+    const [posts,setPosts]=useState([]);
     const [Skip,setSkip]=useState(0);
-    const [Limit,setLimit]=useState(4);
+    const [Limit,setLimit]=useState(3);
     const [Filter,setFilter]=useState({category:[]});
     const [isChecked,setIsChecked]=useState([]);
+    const [SearchValue,setSearchValue]=useState('');
+    
+    const [state,setState]=useState(false);
+    const [postSize,setPostSize]=useState();
 
 
     useEffect(()=>{
-        let variable={
-            skip:Skip,
-            limit:Limit,
-            filter:Filter
-        }
         
-        dispatch(getFirstPosts(variable))
-    },[])
+        getData()
+        .then(data => 
+            state ? 
+            (
+                setPosts([...posts,...data]),
+                setPostSize(data.length)
+            )
+            : 
+            (
+                setPosts([...data]),
+                setPostSize(data.length)
+            )
+            )
 
+        
+    },[Skip,Filter,SearchValue])
+
+    const getData = () =>{
+        let skip = Skip;
+        let limit = Limit;
+        let filter = Filter;
+        let searchValue = SearchValue;
+        const data = axios.get(`/api/posts/getPosts?skip=${skip}&limit=${limit}&filter=${JSON.stringify(filter)}&searchValue=${searchValue}`)
+        .then(response => response.data)
+
+        return data;
+    }
+    
+
+   
     
     const getMorePosts =()=>{
+        setState(true);
         let skip = Skip+Limit;
         let variable={
           skip : skip,
@@ -36,12 +66,15 @@ const LandingPage = () => {
           filter:Filter
 
         }
-         dispatch(getPosts(variable));
+        // dispatch(getPosts(variable));
 
          setSkip(skip)
+        
          
     }
+    
     const toggleChecked = (value)=>{
+        setState(false);
         let checkedArray = [...isChecked];
         let currentIndex = isChecked.indexOf(value)
 
@@ -68,16 +101,23 @@ const LandingPage = () => {
             limit:Limit,
             filter:filterArray
         }
-        dispatch(getFirstPosts(variable))
+       // dispatch(getFirstPosts(variable))
 
         setSkip(0);
+    }
+    const searchPosts = (e) =>{
+        setState(false);
+        setSearchValue(e.target.value);
+        
     }
 
     
     return (
         <div className="landing-wrap">
+           
         <CheckBox category={category} isChecked={isChecked} toggleChecked={toggleChecked}/>
-        <LandingCard posts={posts} getMorePosts={getMorePosts}/>
+        <SearchBar searchPosts={searchPosts} searchValue={SearchValue}/>
+        <LandingCard posts={posts} getMorePosts={getMorePosts} postSize={postSize} limit={Limit}/>
         </div>
     )
 }
