@@ -9,10 +9,12 @@ const Tab_Detail = ({post}) => {
         <section className="tab-detail-post-container">
             <div className="tab-detail-imgs">
             {tabDetail.images && tabDetail.images.map((image,index)=>(
-                <img key={index} src={image}/>
+                <div key={index} className="tab-detail-img-container">
+                <img  src={image}/>
+                </div>
             ))}
            </div>
-           <div className>
+           <div >
 
            </div>
         </section>

@@ -27,6 +27,7 @@ const UploadContainer = (props) => {
     const [Title,setTitle]=useState('');
     const [Description,setDescription]=useState('');
     const [Category,setCategory]=useState(1);
+    const [Price,setPrice]=useState();
     const onChangeTitle=(e)=>{
         setTitle(e.target.value);
     }
@@ -35,6 +36,9 @@ const UploadContainer = (props) => {
     }
     const onChangeCategory=(e)=>{
         setCategory(e.target.value);
+    }
+    const onChangePrice =(e)=>{
+        setPrice(e.target.value);
     }
 
     const onDrop =(files)=>{
@@ -82,6 +86,7 @@ const UploadContainer = (props) => {
                 category:Category,
                 title:Title,
                 description:Description,
+                price:Price
                 
             }
             dispatch(uploadPost(variable))
@@ -102,7 +107,10 @@ const UploadContainer = (props) => {
             Title={Title} Description={Description} Category={Category}
             select={select} onChangeTitle={onChangeTitle}
             onChangeDescription={onChangeDescription}
-            onChangeCategory={onChangeCategory}/>
+            onChangeCategory={onChangeCategory}
+            Price={Price}
+            onChangePrice={onChangePrice}
+            />
         </div>
     )
 }

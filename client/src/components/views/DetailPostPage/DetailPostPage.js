@@ -9,7 +9,8 @@ import CommentPage from '../CommentPage/CommentPage';
 import './DetailPost.css';
 import axios from 'axios';
 import Tab from './Tab/Tab';
-import {Switch,Route} from 'react-router-dom';
+import {Switch,Route,Link} from 'react-router-dom';
+import Tab_Board from './Tab/Tab_Board';
 
 
 
@@ -64,7 +65,20 @@ const DetailPostPage = (props) => {
             
 
             <Tab post={post} postId={postId} match={props.match}/>
+            
+                <ul>
+                    <li><Link to={`${props.match.url}`}>코멘트</Link></li>
+                    <li><Link to={`${props.match.url}/board`}>보드</Link></li>
+                </ul>
+                
+                
+                <Route exact path={`${props.match.path}`} component={CommentPage}/>
+                <Route exact path={`${props.match.path}/board`} component={Tab_Board}/>
+                
+            
         </div>
+        
+            
     )
 }
 

@@ -14,8 +14,8 @@ const postSchema = mongoose.Schema({
         type:String
     },
     price:{
-        type:Number,
-        default:0
+        type:String,
+        default:'0'
     },
     images:{
         type:Array,

@@ -11,9 +11,9 @@ const Post_Image = ({post}) => {
     return (
         <div className="post-image-container">
         {currentImage && 
-        
+         <div className="current-img-container">
          <img className="current-img" src={currentImage} />
-         
+         </div>
         }
         <ul className="select-container">
            {post.images && post.images.map((image,index)=>(

@@ -1,19 +1,33 @@
 import React from 'react'
+import {Link} from 'react-router-dom';
+import {category} from '../Data'
 
 const LandingCard = (props) => {
-    const {posts,getMorePosts,postSize,limit} =props;
+    const {posts,getMorePosts,postSize,limit,title} =props;
+   
+   // let hasProperty = match.params.hasOwnProperty('id');
+   // let title = hasProperty && category.find(item=>item._id === Number(match.params.id));
+
+  // console.log(title);
+
+   
     return (
         <div className="card-wrap">
+            {title && 
+            <h2>{title}</h2>
+            }
         <div className="card-container">
             {posts && posts.map((post,index)=>(
                 <div key={index} className="card">
                    
-                   <a href={`/post/${post._id}`}> <img className="card-img" src={post.images[0]}/> </a>
-                    
+                   <div className="card-img-container">
+                  <Link to={`/post/${post._id}`}>  <img className="card-img" src={post.images[0]}/> </Link>
+                   </div>
+
                     <ul className="card-information">
-                        <li>제목 {post.title}</li>
-                        <li>작성자 {post.writer.name}</li>
-                        <li>분류 {post.category}</li>
+                        <li> {post.title}</li>
+                        <li>{post.price} 원</li>
+                        
                     </ul>
                 </div>
             ))}
