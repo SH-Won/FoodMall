@@ -25,7 +25,7 @@ const LandingPage = (props) => {
     const [Filter,setFilter]=useState({category:[]});
     const [isChecked,setIsChecked]=useState([]);
     const [SearchValue,setSearchValue]=useState('');
-    
+    const [filterPosts,setFilterPosts]=useState([]);
     const [state,setState]=useState(false);
     const [postSize,setPostSize]=useState();
     const [categoryTitle,setCategoryTitle]=useState('');
@@ -61,10 +61,6 @@ const LandingPage = (props) => {
             setPosts([...posts,...data])
             setPostSize(data.length)
             
-            
-            
-
-               
            }
            else{
            // let select = data.filter(post=> post.category === Number(props.match.params.id));
@@ -82,14 +78,34 @@ const LandingPage = (props) => {
 
         
     },[])
-
+    /*
     useEffect(()=>{
+        if(Filter['category'].length === 0){
         let array = allPosts.slice(Skip,Skip+Limit);
         setPosts([...posts,...array]);
         setPostSize(array.length);
+        }
+        else{
+            let array = allPosts.filter(post=> Filter['category'].indexOf(String(post.category)) !== -1)
+            setPosts([...array.slice(0,Skip+Limit)])
+        
+        }
 
     },[Skip])
+   */
+  /*
+    useEffect(()=>{
+        if(Filter['category'].length > 0){
+        let array = allPosts.filter(post=> Filter['category'].indexOf(String(post.category)) !== -1)
+        setPosts([...array.slice(0,Skip+Limit)])
+        }
+        else{
+            let array=allPosts.slice(0,Skip+Limit);
+            setPosts([...array]);
+        }
 
+    },[Filter])
+*/
     
 
     const getData =  () =>{
@@ -99,7 +115,7 @@ const LandingPage = (props) => {
         let filter = hasProperty ? {category:`${props.match.params.id}`} : Filter; 
         let searchValue = SearchValue;
         
-        const data =  axios.get(`/api/posts/getPosts?skip=${0}&limit=${100}&filter=${JSON.stringify(Filter)}&searchValue=${searchValue}`)
+        const data =  axios.get(`/api/posts/getPosts?skip=${0}&limit=${100}&filter=${JSON.stringify(filter)}&searchValue=${searchValue}`)
                       .then(response=> response.data)
 
         return data;
@@ -117,12 +133,28 @@ const LandingPage = (props) => {
     const getMorePosts = ()=>{
         setState(true);
         let skip = Skip+Limit;
-        
+
+        if(Filter['category'].length ===0){
+        let array = allPosts.slice(skip,skip+Limit);
+        setPosts(pre=> [...pre,...array]);
+        setPostSize(array.length);
+        }
+
+        else{
+         let array = allPosts.filter(post => Filter['category'].indexOf(String(post.category)) !==-1)
+         let filterArray = array.slice(skip,skip+Limit);
+         setPosts((pre)=>[...pre,...filterArray]);
+         setPostSize(filterArray.length);
+
+
+        }
+
         setSkip(skip)
     }
     
     const toggleChecked = (value)=>{
         setState(false);
+        
         let checkedArray = [...isChecked];
         let currentIndex = isChecked.indexOf(value)
 
@@ -134,18 +166,32 @@ const LandingPage = (props) => {
         }
         setIsChecked(checkedArray);
         
-        getCheckedPosts(checkedArray,'category');
+        return getCheckedPosts(checkedArray,'category');
 
 
     }
     const getCheckedPosts = (filter,category)=>{
+        
         let filterArray = {...Filter};
-
         filterArray[category] = filter;
         setFilter(filterArray);
-        console.log(Filter);
+        if(filter.length === 0 ){
+            let array = allPosts.slice(0,Limit);
+            setPosts(() => [...array]);
+            setPostSize(array.length);
+            setSkip(0);
+            
+        }
+        else{
+            let array = allPosts.filter(post => filter.indexOf(String(post.category)) !== -1);
+            let filterArray = array.slice(0,Limit)
+            setPosts(()=> [...filterArray]);
+            setPostSize(filterArray.length);
+            setSkip(0);
 
-        setSkip(0);
+        }
+
+        //setSkip(0);
     }
 
     const searchPosts = (e) =>{
