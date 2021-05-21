@@ -1,33 +1,46 @@
 import React,{useState,useEffect} from 'react'
-import {Route,Switch,Link,BrowserRouter} from 'react-router-dom';
-import Tab_Board from './Tab_Board';
-import Tab_Detail from './Tab_Detail';
-import Tab_Contact from './Tab_Contact';
+
+import TabBoard from './TabBoard';
+import TabDetail from './TabDetail';
+
 import CommentPage from '../../CommentPage/CommentPage';
 import './Tab.css';
 
 
 const Tab = (props) => {
-    const {match,postId,post,allPosts} = props;
+    const {postId,post,allPosts} = props;
+
     const [Component,setComponent]= useState()
     const [Current,setCurrent]=useState(1)
+
+    const [pages,setPages] =useState([]);
+    const [boardPosts,setboardPosts]=useState([]);
+    const [currentPage,setCurrentPage]=useState(1);
 
     
     useEffect(()=>{
            setComponent(ComponentArray[0].component);
+
+
     },[post])
+
+    const changeCurrentPage = (page) =>{
+        setCurrentPage(page);
+    }
+
+    
     
     const ComponentArray = [
         {
             id:1,
-            component:<Tab_Detail post={post}/>,
+            component:<TabDetail post={post}/>,
             name:'상세보기'
 
         },
         {
             id:2,
-            component:<Tab_Board posts={allPosts}/>,
-            name:'보드'
+            component:<TabBoard  allPosts={allPosts} currentPage={currentPage} changeCurrentPage={changeCurrentPage}/>,
+            name:'전체 상품'
         },
         {
             id:3,
@@ -45,6 +58,7 @@ const Tab = (props) => {
 
     }
    
+    
     
 
     return (

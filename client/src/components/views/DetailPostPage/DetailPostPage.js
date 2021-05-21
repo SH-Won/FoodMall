@@ -19,7 +19,7 @@ const DetailPostPage = (props) => {
     const [post,setPost] = useState()
     const [allPosts,setAllposts]= useState([]);
     
-    //const [CurrentImage,setCurrentImage]=useState();
+    
     
     useEffect(()=>{
         getDetailPost()
@@ -30,7 +30,7 @@ const DetailPostPage = (props) => {
         .then(data => setAllposts([...data]))
         .catch(err => err)
     },[])
-   // const post = useSelector(state=>state.post.postDetail[0]);
+   
    
     const getDetailPost= ()=>{
         const data = axios.get(`/api/posts/getPostDetail?postId=${postId}&type=single`)
