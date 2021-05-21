@@ -9,7 +9,8 @@ const LandingCard = (props) => {
    // let title = hasProperty && category.find(item=>item._id === Number(match.params.id));
 
   // console.log(title);
-
+  console.log('button event');
+   
    
     return (
         <div className="card-wrap">
@@ -35,7 +36,7 @@ const LandingCard = (props) => {
             
         </div>
         { postSize >= limit &&
-        <button className="more-card-button" onClick={getMorePosts} >더보기</button>
+        <button className="more-card-button" onClick={()=> getMorePosts()} >더보기</button>
         }
         </div>
     )

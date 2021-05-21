@@ -7,9 +7,9 @@ const CommentForm = ({commentValue,setCommentValue,onSubmitComment,onChangeComme
     return (
             <div className="comment-form-container" >
             <form  
-                    onSubmit={(e)=>{e.preventDefault(); onSubmitComment(commentValue,commentId); }} className="comment-form">
+                onSubmit={(e)=>{e.preventDefault(); onSubmitComment(commentValue,commentId); }} className="comment-form">
 
-                <textarea value={commentValue} onChange={onChangeCommentValue}/>
+                <input placeholder="공개 댓글 추가하기" value={commentValue} onChange={onChangeCommentValue}/>
                 <button onClick={(e)=>{e.preventDefault(); onSubmitComment(commentValue,commentId); }} >댓글 달기</button>
 
             </form>

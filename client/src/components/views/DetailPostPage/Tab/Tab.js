@@ -8,7 +8,7 @@ import './Tab.css';
 
 
 const Tab = (props) => {
-    const {match,postId,post} = props;
+    const {match,postId,post,allPosts} = props;
     const [Component,setComponent]= useState()
     const [Current,setCurrent]=useState(1)
 
@@ -26,7 +26,7 @@ const Tab = (props) => {
         },
         {
             id:2,
-            component:<Tab_Board/>,
+            component:<Tab_Board posts={allPosts}/>,
             name:'보드'
         },
         {
@@ -37,19 +37,7 @@ const Tab = (props) => {
         
         ];
 
-    const route = <>
-    <ul>
-                <li><Link to={`${match.url}`}>코맨트</Link></li>
-                <li><Link to={`${match.url}`}>보드</Link></li>
-                <li><Link to={`${match.url}`}>컨택</Link></li>
-            </ul>
-                
-                <Route exact path={`${match.url}`} component={Tab_Detail} />
-                <Route exact path={`${match.url}`} component={Tab_Board} />
-                <Route exact path={`${match.url}`} component={Tab_Contact} />
-
-            
-             </>
+   
     
     function loadComponent(item){
         setComponent(item.component)
@@ -57,11 +45,7 @@ const Tab = (props) => {
 
     }
    
-    const a = <ul className="tab-menu">
-    <li  onClick={()=>{loadComponent(<Tab_Detail/>)}}>상세정보</li>
-    <li  onClick={()=>{loadComponent(<Tab_Board/>)}}>보드</li>
-    <li  onClick={()=>{loadComponent(<CommentPage postId={postId}/>)}}>코맨트</li>
-</ul>
+    
 
     return (
         

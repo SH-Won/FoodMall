@@ -2,7 +2,7 @@ import React from 'react'
 
 const Tab_Detail = ({post}) => {
     
-    
+    console.log('상세보기');
    const tabDetail = {...post};
 
     return (

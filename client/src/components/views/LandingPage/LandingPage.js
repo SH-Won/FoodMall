@@ -8,6 +8,7 @@ import {category} from './Data';
 import axios from 'axios';
 import SearchBar from './Presenter/SearchBar';
 import {Router,Link,Route,Switch} from 'react-router-dom';
+import { formatters } from 'debug';
 
 
 
@@ -19,18 +20,20 @@ const LandingPage = (props) => {
    //  let value = Object.keys(props.match.params).length > 0 && props.match.params.hasOwnProperty('value') ? [props.match.params.value] : [];
     const [posts,setPosts]=useState([]);
     const [allPosts,setAllPosts]=useState([]);
-    const [selectPosts,setSelectPosts]=useState([]);
+    
     const [Skip,setSkip]=useState(0);
     const [Limit,setLimit]=useState(4);
     const [Filter,setFilter]=useState({category:[]});
     const [isChecked,setIsChecked]=useState([]);
     const [SearchValue,setSearchValue]=useState('');
-    const [filterPosts,setFilterPosts]=useState([]);
+    
     const [state,setState]=useState(false);
     const [postSize,setPostSize]=useState();
     const [categoryTitle,setCategoryTitle]=useState('');
-    const [categoryValue,setCategoryValue]=useState();
+   
 
+    
+   
 
     
     useEffect(()=>{
@@ -55,6 +58,7 @@ const LandingPage = (props) => {
        getData()
        .then(data => {
            
+           
            if(state){
           //  let select = data.filter(post=> post.category === Number(props.match.params.id));
           //  setSelectPosts([...selectPosts,...select]); 
@@ -69,15 +73,15 @@ const LandingPage = (props) => {
             let dataArray = data.slice(Skip,Limit);
             setPosts([...dataArray])
             setPostSize(dataArray.length)
-            console.log(props.match)
+            console.log(data);
            }
        })
-       
-
+      
       
 
         
     },[])
+  
     /*
     useEffect(()=>{
         if(Filter['category'].length === 0){
@@ -106,7 +110,7 @@ const LandingPage = (props) => {
 
     },[Filter])
 */
-    
+   
 
     const getData =  () =>{
         let hasProperty = props.match.params.hasOwnProperty('id');
@@ -114,10 +118,16 @@ const LandingPage = (props) => {
         let limit = Limit;
         let filter = hasProperty ? {category:`${props.match.params.id}`} : Filter; 
         let searchValue = SearchValue;
+        let title = hasProperty ? category.find(item => item._id === props.match.params.id) : '';
+        hasProperty && setCategoryTitle(title.name);
         
         const data =  axios.get(`/api/posts/getPosts?skip=${0}&limit=${100}&filter=${JSON.stringify(filter)}&searchValue=${searchValue}`)
                       .then(response=> response.data)
-
+       
+        
+       
+        
+        
         return data;
     }
     
@@ -130,7 +140,10 @@ const LandingPage = (props) => {
         let skip = Skip+Limit;
          setSkip(skip)   
     }*/
+    
     const getMorePosts = ()=>{
+        
+        
         setState(true);
         let skip = Skip+Limit;
 
@@ -197,22 +210,24 @@ const LandingPage = (props) => {
     const searchPosts = (e) =>{
         setState(false);
         setSearchValue(e.target.value);
-        
+        let searchValue = e.target.value.split('');
+        console.log(searchValue);
+        let titleArray = allPosts.map(post => post.title)
+        console.log(titleArray);
+        /*
+        let titleArray = allPosts.map(post => post.title)
+        let searchArray= titleArray.filter(post=>{
+            let isExist = [];
+            for(let i=0; i<searchValue.length; i++){
+              isExist = post.split('').indexOf(searchValue[i]);
+
+            }
+
+        })
+        */
     }
     
-    const handleCategory =(value)=>{
-       
-       /*
-        let filter = [...isChecked];
-        filter.push(value);
-        let filterArray = {...Filter};
-        filterArray['category']=filter;
-
-        setFilter(filterArray);
-        */
-       setCategoryValue(value);
-        
-    }
+   
    
    
     return (

@@ -1,27 +1,15 @@
-import React,{useState,useEffect} from 'react'
+import React from 'react'
 import axios from 'axios';
 
-const Tab_Board = () => {
-    const [posts,setPosts]=useState([]);
+const Tab_Board = ({posts}) => {
+    
 
-    useEffect(()=>{
-        getData()
-        .then(data => setPosts(data))
-
-    },[])
-
-
-    function getData(){
-       const data =  axios.get('/api/posts/getPosts')
-        .then(response=>response.data);
-
-        return data;
-    }
+   console.log('보드');
 
     return (
         <div>
             <ul>
-            {posts.map(post =>(
+            {posts && posts.map(post =>(
                <li key={post._id}>{post.title}</li>
             ))}
             </ul>

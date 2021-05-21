@@ -37,6 +37,7 @@ const Comment = ({commentList,onSubmitComment}) => {
         <div className="comment-all">
             {renderComment}
         </div>
+        
         </div>
     )
 }
