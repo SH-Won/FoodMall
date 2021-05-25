@@ -37,13 +37,17 @@ const CartPage = () => {
       // 45,070,123
 
       setTotalPrice(sum);
-     
 
     },[user.cartDetail])
     console.log(totalPrice);
 
     const deleteCartItem = (postId)=>{
+        if(confirm('삭제 하시겠습니까?') === true ){
+
+        
         dispatch(removeCartItem(postId))
+        }
+        return
     }
 
   
@@ -51,7 +55,7 @@ const CartPage = () => {
     return (
         <div>
             <Cart_Item items={user.cartDetail} deleteCartItem={deleteCartItem}/>
-            <span> </span>
+            <span>총 {totalPrice}원 </span>
         </div>
     )
 }

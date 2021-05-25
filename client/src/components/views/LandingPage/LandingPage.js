@@ -80,7 +80,7 @@ const LandingPage = (props) => {
       
 
         
-    },[])
+    },[SearchValue])
   
     /*
     useEffect(()=>{
@@ -109,25 +109,19 @@ const LandingPage = (props) => {
         }
 
     },[Filter])
+    
 */
-   
-
+    
     const getData =  () =>{
         let hasProperty = props.match.params.hasOwnProperty('id');
-        let skip = Skip;
-        let limit = Limit;
         let filter = hasProperty ? {category:`${props.match.params.id}`} : Filter; 
         let searchValue = SearchValue;
         let title = hasProperty ? category.find(item => item._id === props.match.params.id) : '';
         hasProperty && setCategoryTitle(title.name);
         
-        const data =  axios.get(`/api/posts/getPosts?skip=${0}&limit=${100}&filter=${JSON.stringify(filter)}&searchValue=${searchValue}`)
+        const data =  axios.get(`/api/posts/getPosts?filter=${JSON.stringify(filter)}&searchValue=${searchValue}`)
                       .then(response=> response.data)
        
-        
-       
-        
-        
         return data;
     }
     

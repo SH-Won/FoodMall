@@ -15,14 +15,14 @@ const Post_Image = ({post}) => {
          <img className="current-img" src={currentImage} />
          </div>
         }
-        <ul className="select-container">
+        <div className="select-container">
            {post.images && post.images.map((image,index)=>(
-                <li className="select-img-container" key={index} onClick={()=>selectImage(image)}>
+                <div className="select-img-container" key={index} onClick={()=>selectImage(image)}>
                   <img className="select-img" src={image}/>
-                </li>
+                </div>
             ))}
             
-        </ul> 
+        </div> 
         </div>
     )
 }

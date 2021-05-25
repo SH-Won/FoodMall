@@ -1,8 +1,7 @@
 import React,{useState,useEffect} from 'react'
 
-import TabBoard from './TabBoard';
-import TabDetail from './TabDetail';
-
+import TabBoard from './Presenter/TabBoard';
+import TabDetail from './Presenter/TabDetail';
 import CommentPage from '../../CommentPage/CommentPage';
 import './Tab.css';
 
@@ -13,8 +12,6 @@ const Tab = (props) => {
     const [Component,setComponent]= useState()
     const [Current,setCurrent]=useState(1)
 
-    const [pages,setPages] =useState([]);
-    const [boardPosts,setboardPosts]=useState([]);
     const [currentPage,setCurrentPage]=useState(1);
 
     

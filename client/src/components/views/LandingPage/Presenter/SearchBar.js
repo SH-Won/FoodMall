@@ -5,7 +5,9 @@ const SearchBar = (props) => {
     const {searchPosts,searchValue} = props;
 
     return (
-        <input onChange={searchPosts} value={searchValue} placeholder="검색"/>
+        <div style={{display:'flex', justifyContent:'flex-end', width:'100%'}}>
+        <input style={{marginRight:'30px' }}  onChange={searchPosts} value={searchValue} placeholder="물품을 검색하세요"/>
+        </div>
     )
 }
 

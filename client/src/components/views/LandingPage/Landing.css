@@ -14,13 +14,15 @@
 }
 .landing-menu{
     padding:0;
+    margin:0;
     list-style: none;
     display: flex;
     flex-wrap: wrap;
+    
 
 }
 .landing-menu > li{
-    width:25%;
+    flex: 1 1 24%;
     border-right: 1px solid #dddddd;
     border-bottom: 1px solid #dddddd;
     text-align: center;
@@ -124,7 +126,7 @@
 
 }
 .checkbox-list > li {
-    margin:0.5rem;
+    margin:0.3rem;
 }
 
 /* media screen */

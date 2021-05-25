@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react'
 
 
-const Tab_Board = (props) => {
+const TabBoard = (props) => {
     const {allPosts,currentPage,changeCurrentPage} =props;
     
     const [pages,setPages] =useState([]);
@@ -57,4 +57,4 @@ const Tab_Board = (props) => {
     )
 }
 
-export default Tab_Board
+export default TabBoard

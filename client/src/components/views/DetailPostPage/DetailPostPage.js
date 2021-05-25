@@ -55,9 +55,16 @@ const DetailPostPage = (props) => {
     const addtoCart =()=>{
         console.log('클릭');
 
-        dispatch(addCartItem(postId))
-
+        if(confirm('장바구니에 담으시겠습니까 ?') ===true) {
+        dispatch(addCartItem(postId)) 
         alert('장바구니에 추가했습니다')
+        }
+        else{
+            return
+        }
+        
+
+
     }
 
     const commentPage = <CommentPage postId={postId}/>
