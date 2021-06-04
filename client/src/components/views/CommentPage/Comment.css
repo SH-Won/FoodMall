@@ -1,0 +1,140 @@
+.comment-wrap{
+    display:flex;
+    flex-direction: column;
+    margin:1rem auto;
+    padding:0;
+    width:80%;
+    
+    justify-content: center;
+    flex-wrap:nowrap;
+    overflow: hidden;
+    overflow-y: auto;
+}
+/* CommentForm.js */
+.comment-form-container{
+    margin-top: 1rem;
+    display:flex;
+    width:100%;
+    justify-content: center;
+}
+.comment-form-container > form {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width:70%;
+}
+.comment-form > input {
+    width:70%;
+    margin: 1rem;
+    outline:none;
+    border:none;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid black;
+}
+.comment-form > button {
+    width:100px;
+    height:50px;
+    outline: transparent;
+    border:none;
+    border: 1px solid #02507c;
+    box-shadow: 0 0 4px #023b5c;
+    color:#182024;
+    border-radius: 8px;
+    
+
+}
+
+
+.root-comment-container{
+    width:90%;
+    
+    position:relative;
+    
+    outline: transparent;
+    
+    box-sizing: border-box;
+    background:#f5f5f5;
+    padding-bottom: 1.2rem;
+    border-bottom: 0.5px solid gray;
+    
+    
+
+}
+.comment-all{
+    display:flex;
+    flex-direction: column;
+    position:relative;
+    align-items: center;
+    height:50%;
+    
+    border-radius: 8px;
+    flex-wrap:nowrap;
+    overflow: hidden;
+    overflow-y: auto;
+    
+}
+.comment-container{
+    display:flex;
+    flex-direction: column;
+   
+    
+    margin:1rem;
+    
+}
+.comment-info{
+    display:flex;
+    
+    
+}
+.comment-info > img{
+    width:35px;
+    height:35px;
+    border-radius: 50%;
+    margin-right:0.5rem;
+}
+.comment{
+    list-style: none;
+    display:flex;
+    flex-direction: column;
+    padding:0;  
+    margin:0;
+}
+.comment li{
+    font-size: .6em;
+    padding:0;
+    margin:.3em;
+    
+}
+
+.comment >button{
+    outline: transparent;
+    border:none;
+    
+    border: 1px solid #32abf1;
+    box-shadow: 0 0 4px #83ccf7;
+    color:#134d6e;
+    border-radius: 8px;
+    margin-top:.3em;
+    font-size: .7em;
+}
+
+.reply-comment-container{
+    margin-left:3.5rem;
+
+}
+
+/* ReplyComment.js*/
+.show-reply{
+   
+   /* z-index:1;
+    position: relative;
+    bottom: 53px;
+    left: 140px;
+   */
+    
+    cursor: pointer;
+    margin:0;
+    margin-left: 60px;
+    color: blue;
+    
+}

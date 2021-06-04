@@ -1,0 +1,154 @@
+.landing-wrap{
+    width:100%;
+    margin:0;
+    padding:0;
+}
+/* Landing.js */
+.card-wrap{
+    
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    align-content: space-around;
+  
+}
+.landing-menu{
+    padding:0;
+    margin:0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    
+
+}
+.landing-menu > li{
+    flex: 1 1 24%;
+    border-right: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+    text-align: center;
+    margin:0;
+    font-size: 1rem;
+    padding: .4rem 0;
+    
+}
+.landing-menu > li > a{
+    text-decoration: none;
+    color:rgb(85, 83, 81);
+    
+    
+}
+.card-container{
+    width:100%;
+    margin-top:1rem;
+    justify-content: flex-start;
+    align-items: center;
+    
+   /* display:grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-auto-rows:30vw;
+    */
+    display:flex;
+    flex-wrap: wrap;
+}
+.card{
+    flex:0 1 calc((100% - (0.3rem * 6) ) / 3);
+    
+    display:flex;
+    flex-direction: column;
+    margin:.3rem;
+    align-items: center;
+    
+    outline: transparent;
+    
+    box-sizing: border-box;
+   
+    
+    
+}
+.card-img-container{
+    width:100%;
+    padding-top:80%;
+    position:relative;
+    
+    
+}
+.card-img{
+    width:100%;
+    height:100%;
+    position:absolute;
+    top:0;
+    
+}
+.card-information{
+    width:100%;
+    
+    padding:0;
+    margin:.2rem;
+    list-style: none;
+    display:flex;
+    flex-direction: column;
+    
+    
+}
+.card-information  li{
+    margin:.2rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+.card-information li:nth-of-type(2){
+    font-size: 1.5rem;
+
+}
+.more-card-button{
+    border:none;
+    background:whitesmoke;
+    border-radius: 4px;
+    box-shadow: 0 0 2px #2c87f0;
+    outline:transparent;
+    color:#4a96ee;
+    
+}
+
+/* CheckBox.js */
+.checkbox-wrap{
+    width:100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    
+    
+}
+.checkbox-list{
+    
+    list-style: none;
+    display:flex;
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+
+}
+.checkbox-list > li {
+    margin:0;
+}
+
+/* media screen */
+@media screen and (min-width:950px){
+    .card{
+    flex:0 1 calc((100% - (0.3rem * 8) ) / 4);
+    }
+}
+
+@media screen and (max-width:750px){
+    
+    
+    
+}
+
+@media screen and (max-width:550px){
+    .card{
+        flex: 0 1 calc((100% - (0.3rem * 4) ) / 2)
+    }
+}
+
+
+

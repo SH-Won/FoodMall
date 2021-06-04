@@ -1,0 +1,126 @@
+.tab{
+    width:100%;
+    display:flex;
+    margin:1rem auto;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.tab-menu{
+    list-style: none;
+    width:97%;
+    margin:0;
+    padding:0;
+    display:flex;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+    z-index:0;
+}
+
+.tab-menu > li{
+    width:33%;
+    font-size: 1rem;
+    cursor: pointer;
+    color:gray;
+    margin:0;
+    padding:4px;
+    border: 1px solid gray;
+    border-bottom: none;
+   
+    text-align: center;
+    opacity: 0.6;
+    z-index:0;
+    
+
+}
+.tab-menu li:hover{
+
+}
+.tab-menu .current{
+    color:black;
+    opacity: 1;
+    border: 1px solid black;
+    border-bottom: none;
+    z-index:2;
+}
+.tab-component{
+    width:97%;
+    z-index:2
+    
+    
+}
+.tab-detail-post-container{
+    width:100%;
+    
+    
+}
+.tab-detail-imgs{
+    display:flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.tab-detail-img-container{
+    width:40%;
+    margin:0.5rem;
+    position:relative;
+    padding-top:30%;
+
+}
+.tab-detail-img-container > img{
+    width:100%;
+    height:100%;
+    position: absolute;
+    top:0;
+    left:0;
+
+}
+.board-container{
+    width:70%;
+    margin:1rem auto;
+    display: flex;
+    flex-direction: column;
+    
+}
+.board-posts{
+    list-style: none;
+    padding:0;
+    margin-bottom: 1rem;
+
+}
+.board-posts > li {
+    padding: .5rem 0;
+    margin:.8rem;
+    border-bottom:.5px solid gray;
+}
+.board-poasts li > a{
+    text-decoration: none;
+}
+
+.page-number{
+    list-style:none;
+    padding:0;
+    display:flex;
+    margin:.3rem;
+    justify-content: center;
+    
+}
+.page-number > li{
+    padding:.3rem .5rem;
+    border: .3px solid gray;
+    color:gray;
+    opacity: 0.6;
+    cursor: pointer;
+}
+.page-number > .current{
+    opacity: 1;
+    border:.3px solid blue;
+    color:black;
+}
+@media screen and (max-width:550px) {
+    .tab-detail-post-container img{
+        width:80%;
+        flex:0 1 80%;
+    }
+    
+}
