@@ -16,12 +16,14 @@ const Tab = (props) => {
 
     
     useEffect(()=>{
+        console.log('tab useEffect');
            setComponent(ComponentArray[0].component);
 
 
     },[post])
 
     const changeCurrentPage = (page) =>{
+        console.log('changeCurrentPage');
         setCurrentPage(page);
     }
 
@@ -50,6 +52,7 @@ const Tab = (props) => {
    
     
     function loadComponent(item){
+        console.log('loadComponent');
         setComponent(item.component)
         setCurrent(item.id);
 

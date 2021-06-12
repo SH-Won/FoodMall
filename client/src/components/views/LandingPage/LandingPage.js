@@ -2,11 +2,16 @@ import React, { useEffect, useState, useMemo , useCallback } from "react";
 import { useDispatch } from "react-redux";
 import LandingCard from "./Presenter/LandingCard";
 import CheckBox from "./Presenter/CheckBox";
+import Carousel1 from "./Presenter/Carousel1";
 import "./Landing.css";
 import { category } from "./Data";
 import axios from "axios";
 import SearchBar from "./Presenter/SearchBar";
 import { Link, Route } from "react-router-dom";
+
+
+// useMemo 는 함수가 리턴한 값을 기억함 의존성 배열 필요
+// useCallback 은 함수 자체를 기억함 의존성 배열 필요
 
 const LandingPage = (props) => {
   const dispatch = useDispatch();
@@ -23,8 +28,27 @@ const LandingPage = (props) => {
   const [postSize, setPostSize] = useState();
   const [categoryTitle, setCategoryTitle] = useState("");
 
+  const historyData = (location,history)=>{
+    let data = {
+      allPosts:allPosts,
+      posts:posts,
+      skip:Skip,
+      filter:Filter,
+      isChecked:isChecked,
+      postSize:postSize
+    }
+    location.state ={ ...data};
+    history.replace(undefined,{...data});
+
+  }
+
  
   useEffect(() => {
+    console.log('use Effect');
+    const {history, location} = props;
+    console.dir(history);
+    console.dir(location);
+
     /*
         getData()
         .then(data => 
@@ -42,7 +66,7 @@ const LandingPage = (props) => {
             )
             )
         */
-
+       !location.state ?
     getData().then((data) => {
       if (state) {
         //  let select = data.filter(post=> post.category === Number(props.match.params.id));
@@ -57,11 +81,24 @@ const LandingPage = (props) => {
         setPosts([...dataArray]);
         setPostSize(dataArray.length);
         console.log(data);
-      }
-    });
-  }, [SearchValue]);
 
-  /*
+      }
+     
+      
+    }) :
+    (
+      setAllPosts(location.state.allPosts),
+      setPosts(location.state.posts),
+      setSkip(location.state.skip),
+      setFilter(location.state.filter),
+      setPostSize(location.state.postSize),
+      history.replace(undefined,undefined)
+    )
+  }, [SearchValue]);
+  console.dir(window);
+
+     
+     /*
     useEffect(()=>{
         if(Filter['category'].length === 0){
         let array = allPosts.slice(Skip,Skip+Limit);
@@ -116,8 +153,11 @@ const LandingPage = (props) => {
     }*/
 
   const getMorePosts = useCallback(() => {
+    console.log('get More Posts');
+    console.log('skip',Skip);
     setState(true);
     let skip = Skip + Limit;
+    
 
     if (Filter["category"].length === 0) {
       let array = allPosts.slice(skip, skip + Limit);
@@ -133,12 +173,14 @@ const LandingPage = (props) => {
     }
 
     setSkip(skip);
-  },[posts]);
+  },[posts,Filter]);
 
-  console.dir('dir',getMorePosts);
+  
 
   const toggleChecked = useCallback((value) => {
+    console.log('toogleChecked');
     setState(false);
+    console.log(isChecked);
 
     let checkedArray = [...isChecked];
     let currentIndex = isChecked.indexOf(value);
@@ -150,12 +192,16 @@ const LandingPage = (props) => {
     }
     setIsChecked(checkedArray);
 
-    return getCheckedPosts(checkedArray, "category");
+    getCheckedPosts(checkedArray, "category");
 
-  },[isChecked]);
+    
+
+  },[isChecked,allPosts]);
+  
 
   
   const getCheckedPosts = (filter, category) => {
+    console.log('getCheckedPosts');
     let filterArray = { ...Filter };
     filterArray[category] = filter;
     setFilter(filterArray);
@@ -179,6 +225,7 @@ const LandingPage = (props) => {
   };
 
   const searchPosts = useCallback((e) => {
+    console.log('searchPosts');
     setState(false);
     setSearchValue(e.target.value);
     /*
@@ -208,12 +255,14 @@ const LandingPage = (props) => {
             toggleChecked={toggleChecked}
           />
           <SearchBar searchPosts={searchPosts} searchValue={SearchValue} />
+          <Carousel1 posts={posts}/>
           <LandingCard
             posts={posts}
             getMorePosts={getMorePosts}
             postSize={postSize}
             limit={Limit}
             title={categoryTitle}
+            historyData={historyData}
             {...props}
           />
         </div>

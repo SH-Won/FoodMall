@@ -2,7 +2,7 @@ import React,{useMemo} from 'react'
 
 const CheckBox = React.memo( ({category,isChecked,toggleChecked}) => {
 
-    
+  
 
     //const {category,isChecked,toggleChecked} = props;
 

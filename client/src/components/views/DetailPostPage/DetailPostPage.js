@@ -17,7 +17,7 @@ import TabBoard from './Tab/Presenter/TabBoard';
 const DetailPostPage = (props) => {
     const dispatch = useDispatch();
     const postId = props.match.params.postId;
-    console.log(props.match);
+    
     const [post,setPost] = useState()
     const [allPosts,setAllposts]= useState([]);
 
@@ -26,14 +26,16 @@ const DetailPostPage = (props) => {
     
   
     const changeCurrentPage = (page) =>{
+        console.log('changeCurrentPage');
         setCurrentPage(page);
     }
-    const scrollTo = () =>{
-        
-    }
     
+    console.log('DetailPostPage');
     useEffect(()=>{
-        scrollTo();
+        
+            document.documentElement.scrollTop =0;
+        
+        console.log('use Effect');
         getDetailPost()
         .then(data => {
             setPost(data)
@@ -60,7 +62,7 @@ const DetailPostPage = (props) => {
 
    
     const addtoCart =()=>{
-        console.log('클릭');
+        console.log('addTocart');
 
         if(confirm('장바구니에 담으시겠습니까 ?') ===true) {
         dispatch(addCartItem(postId)) 
