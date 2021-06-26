@@ -1,10 +1,20 @@
 import React,{useState,useEffect, useRef} from 'react'
 import styles from './Carousel.module.css';
+import Slider from 'react-slick';
 
 const Carousel1 = ({posts}) => {
     const [images,setImages]= useState([]);
     const carouselBox =useRef();
+    const carousel = useRef();
     const [index,setIndex]=useState(0);
+
+    const settings ={
+        dots:true,
+        infinite:true,
+        speed:500,
+        slidesToShow:1,
+        slidesToScroll:1
+    }
 
     useEffect(()=>{
         let images = posts && posts.map(post => post.images[0]);
@@ -41,7 +51,8 @@ const Carousel1 = ({posts}) => {
             
             position -= (IMAGE_WIDTH);
             //console.log(Math.ceil(position-walk))
-            carouselBox.current.style.transform=`translate(${Math.ceil(position-walk)}px)`;
+            //carouselBox.current.style.transform=`translate(${Math.ceil(position)}px)`;
+            carouselBox.current.style.left=`${position}px`;
             carouselBox.current.scrollLeft = 0;
             curPos =curPos+1;
         }
@@ -54,6 +65,7 @@ const Carousel1 = ({posts}) => {
         start_x =e.touches[0].pageX-carouselBox.current.offsetLeft;
        // carouselBox.current.scrollLeft =start_x-changed_x;
        // console.log(changed_x);
+       carousel.current.style.overflow='scroll'
         
     }
     const touchMove = (e)=>{
@@ -61,7 +73,7 @@ const Carousel1 = ({posts}) => {
         walk = e.changedTouches[0].pageX -carouselBox.current.offsetLeft-start_x ;
         // console.log('changed',e.changedTouches);
         // console.log('walk',walk)
-
+        
         console.dir(carouselBox.current);
         
 
@@ -137,28 +149,35 @@ const Carousel1 = ({posts}) => {
         console.log('touch End');
         end_x = e.changedTouches[0].pageX-carouselBox.current.offsetLeft;
         console.log('start',start_x, 'end',end_x);
+        carousel.current.style.overflow='hidden';
+        
         if(start_x > end_x){
             next();
+            
+            
         }
         else{
             prev();
         }
     }
 
+    
 
     return (
-        <div className={styles.carousel}>
-            <div className={styles.carousel_box} ref={carouselBox}
-            onTouchStart={touchStart} onTouchMove={touchMove} onTouchEnd={touchEnd} >
-                {images.map((image,index)=>(
-                    <div className={styles.img_container} key={`image${index}`}>
-                        <img src={image} alt="image"/>
-                    </div>
-                ))}
-
-            </div>
-            
+        <div className={styles.carousel} ref={carousel}>
+        <div className={styles.carousel_box} ref={carouselBox}
+        onTouchStart={touchStart} onTouchMove={touchMove} onTouchEnd={touchEnd} >
+            {images.map((image,index)=>(
+                <div className={styles.img_container} key={`image${index}`}>
+                    <img src={image} alt="image"/>
+                </div>
+            ))}
+    
         </div>
+        
+    </div>
+    
+        
     )
 }
 

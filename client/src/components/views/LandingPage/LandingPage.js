@@ -3,11 +3,13 @@ import { useDispatch } from "react-redux";
 import LandingCard from "./Presenter/LandingCard";
 import CheckBox from "./Presenter/CheckBox";
 import Carousel1 from "./Presenter/Carousel1";
+import ImageSlider from "./Presenter/ImageSlider";
 import "./Landing.css";
 import { category } from "./Data";
 import axios from "axios";
 import SearchBar from "./Presenter/SearchBar";
 import { Link, Route } from "react-router-dom";
+import InfiniteScroll from '../../../hook/InfiniteScroll';
 
 
 // useMemo 는 함수가 리턴한 값을 기억함 의존성 배열 필요
@@ -28,6 +30,13 @@ const LandingPage = (props) => {
   const [postSize, setPostSize] = useState();
   const [categoryTitle, setCategoryTitle] = useState("");
 
+  const [hasMore,setHasMore]=useState(false);
+  const [loading,setLoading]=useState(true);
+
+  console.log(posts);
+  
+  
+
   const historyData = (location,history)=>{
     let data = {
       allPosts:allPosts,
@@ -35,14 +44,15 @@ const LandingPage = (props) => {
       skip:Skip,
       filter:Filter,
       isChecked:isChecked,
-      postSize:postSize
+      postSize:postSize,
+      scrollTop:document.documentElement.scrollTop,
     }
     location.state ={ ...data};
     history.replace(undefined,{...data});
 
   }
 
- 
+  
   useEffect(() => {
     console.log('use Effect');
     const {history, location} = props;
@@ -73,6 +83,8 @@ const LandingPage = (props) => {
         //  setSelectPosts([...selectPosts,...select]);
         setPosts([...posts, ...data]);
         setPostSize(data.length);
+        setHasMore(data.length >0)
+       
       } else {
         // let select = data.filter(post=> post.category === Number(props.match.params.id));
         // setSelectPosts([...select]);
@@ -80,6 +92,8 @@ const LandingPage = (props) => {
         let dataArray = data.slice(Skip, Limit);
         setPosts([...dataArray]);
         setPostSize(dataArray.length);
+        setHasMore(dataArray.length >0)
+        
         console.log(data);
 
       }
@@ -92,6 +106,12 @@ const LandingPage = (props) => {
       setSkip(location.state.skip),
       setFilter(location.state.filter),
       setPostSize(location.state.postSize),
+      setIsChecked(location.state.isChecked),
+      //useState 는 비동기인것 같다.
+      setTimeout(()=>{
+        document.documentElement.scrollTop=location.state.scrollTop
+      },0),
+      
       history.replace(undefined,undefined)
     )
   }, [SearchValue]);
@@ -152,32 +172,59 @@ const LandingPage = (props) => {
          setSkip(skip)   
     }*/
 
-  const getMorePosts = useCallback(() => {
-    console.log('get More Posts');
-    console.log('skip',Skip);
-    setState(true);
-    let skip = Skip + Limit;
+  // const getMorePosts = useCallback(() => {
+  //   console.log('get More Posts');
+  //   console.log('skip',Skip);
+  //   setState(true);
+  //   let skip = Skip + Limit;
     
 
-    if (Filter["category"].length === 0) {
-      let array = allPosts.slice(skip, skip + Limit);
-      setPosts(posts.concat(array));
-      setPostSize(array.length);
-    } else {
-      let array = allPosts.filter(
-        (post) => Filter["category"].indexOf(String(post.category)) !== -1
-      );
-      let filterArray = array.slice(skip, skip + Limit);
-      setPosts((pre) => [...pre, ...filterArray]);
-      setPostSize(filterArray.length);
-    }
+  //   if (Filter["category"].length === 0) {
+  //     let array = allPosts.slice(skip, skip + Limit);
+  //     setPosts(posts.concat(array));
+  //     setPostSize(array.length);
+  //   } else {
+  //     let array = allPosts.filter(
+  //       (post) => Filter["category"].indexOf(String(post.category)) !== -1
+  //     );
+  //     let filterArray = array.slice(skip, skip + Limit);
+  //     setPosts((pre) => [...pre, ...filterArray]);
+  //     setPostSize(filterArray.length);
+  //   }
 
-    setSkip(skip);
-  },[posts,Filter]);
+  //   setSkip(skip);
+  // },[posts,Filter]);
+  const getMorePosts = () =>{
+      setHasMore(false);
+    let skip = Skip + Limit;
+      
+
+      if (Filter["category"].length === 0) {
+        let array = allPosts.slice(skip, skip + Limit);
+        setPosts(posts.concat(array));
+        setPostSize(array.length);
+        setHasMore(array.length === Limit )
+       
+      } else {
+        let array = allPosts.filter(
+          (post) => Filter["category"].indexOf(String(post.category)) !== -1
+        );
+        let filterArray = array.slice(skip, skip + Limit);
+        setPosts((pre) => [...pre, ...filterArray]);
+        setPostSize(filterArray.length);
+        setHasMore(filterArray.length === Limit)
+        
+      }
+  
+      setSkip(skip);
+
+  }
+
+  const {lastIndexRef} = InfiniteScroll(getMorePosts,hasMore)
 
   
 
-  const toggleChecked = useCallback((value) => {
+  const toggleChecked = (value) => {
     console.log('toogleChecked');
     setState(false);
     console.log(isChecked);
@@ -196,7 +243,7 @@ const LandingPage = (props) => {
 
     
 
-  },[isChecked,allPosts]);
+  };
   
 
   
@@ -244,18 +291,19 @@ const LandingPage = (props) => {
         <div className="landing-wrap">
           <ul className="landing-menu">
             {category.map((value) => (
-              <li key={value._id}>
+              <li key={value._id} >
                 <Link to={`/posts/${value._id}`}>{value.name}</Link>
               </li>
             ))}
           </ul>
+          <ImageSlider posts={posts}/>
           <CheckBox
             category={category}
             isChecked={isChecked}
             toggleChecked={toggleChecked}
           />
           <SearchBar searchPosts={searchPosts} searchValue={SearchValue} />
-          <Carousel1 posts={posts}/>
+          
           <LandingCard
             posts={posts}
             getMorePosts={getMorePosts}
@@ -263,6 +311,8 @@ const LandingPage = (props) => {
             limit={Limit}
             title={categoryTitle}
             historyData={historyData}
+            lastIndexRef={lastIndexRef}
+            
             {...props}
           />
         </div>
@@ -275,6 +325,7 @@ const LandingPage = (props) => {
           postSize={postSize}
           limit={Limit}
           title={categoryTitle}
+          historyData={historyData}
           {...props}
         />
       </Route>

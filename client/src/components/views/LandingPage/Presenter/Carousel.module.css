@@ -8,25 +8,27 @@
     display:flex;
     justify-content: center;
     margin:0 auto;
-    overflow-x:scroll;
+    overflow:hidden;
+    
 }
 .carousel_box{
     
     width:100%;
     
     
+    
     display:flex;
     
     
-    transition: transform .6s;
+    transition: left .6s;
 
 }
 .img_container{
-    display:block;
+    width:100%;
     flex:0 0 auto;
     position:relative;
     padding-top: 56.25%;
-    width:100%;
+    
    
 
 }

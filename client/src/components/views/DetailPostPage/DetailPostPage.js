@@ -73,6 +73,7 @@ const DetailPostPage = (props) => {
         }
         
     }
+    
 
     const detailRoutes =
             <>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 
 const LandingCard = (props) => {
-  const { posts, getMorePosts, postSize, limit, title, historyData } = props;
+  const { posts, getMorePosts, postSize, limit, title, historyData,lastIndexRef } = props;
   console.log('랜딩 카드');
 
   
@@ -14,7 +14,7 @@ const LandingCard = (props) => {
       <div className="card-container">
         {posts &&
           posts.map((post, index) => (
-            <div key={index} className="card">
+            <div key={post._id} className="card" ref={index === posts.length -1 ? lastIndexRef : null}>
               <div className="card-img-container">
                 <Link to={`/post/${post._id}`} onClick={()=>historyData(props.location,props.history)}>
                   <img className="card-img" src={post.images[0]} />
