@@ -88,7 +88,10 @@ router.get('/getPosts',(req,res)=>{
    .populate('writer')
    .exec((err,posts)=>{
        if (err) res.json({success:false,err})
-       res.json(posts);
+       res.json(
+           posts
+           
+       );
       
    })
    }

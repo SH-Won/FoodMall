@@ -1,19 +1,26 @@
-import React,{useRef,useCallback,useEffect} from 'react'
+import React,{useState,useRef,useCallback,useEffect} from 'react'
 
-const InfiniteScroll = (cb,hasMore) => {
+const InfiniteScroll = (callback,hasMore,loading) => {
+    
+    console.log('infiniteScroll');
     const observer =useRef();
-    const handleScroll = ([entry]) =>{
-        if(entry.isIntersecting && hasMore)
-          cb();
-    }
+    const handleScroll = ( ([entry],ob) =>{
+        console.log('entry',entry);
+        
+        if(entry.isIntersecting && hasMore){
+            
+          callback();
+          ob.unobserve(entry.target);
+        }
+    })
     
     const lastIndexRef =useCallback((node)=>{
-        if(!node) return;
+        if(loading) return;
         if(observer.current) observer.current.disconnect();
         
-        observer.current = new IntersectionObserver(handleScroll)
+        observer.current = new IntersectionObserver(handleScroll,{threshold:0.8})
         if(node) observer.current.observe(node)
-    },[hasMore,handleScroll])
+    },[loading,hasMore])
     return {
         lastIndexRef
     }

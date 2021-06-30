@@ -1,3 +1,7 @@
+*{
+  padding:0;
+  margin:0;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
@@ -43,3 +47,16 @@ input.error {
   height: 5px;
   margin-top: -12px;
 }
+
+.button {
+  width: 15%;
+  color:blue;
+  outline: transparent;
+  border-radius: 1rem;
+  background-color: transparent;
+  border: 1px solid aliceblue;
+  box-shadow: 0 0 10px cadetblue;
+  cursor: pointer;
+  margin-top:1rem;
+}
+

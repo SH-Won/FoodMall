@@ -14,3 +14,5 @@ export const GET_POST_DETAIL = 'get_post_detail';
 
 export const SAVE_COMMENT = 'save_comment';
 export const GET_COMMENTS = 'get_comments';
+
+export const TEST_GET_POSTS = 'test_get_posts';

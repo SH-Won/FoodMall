@@ -19,11 +19,14 @@ export default function(state={images:[],posts:[],postDetail:[]},action){
             }
         case GET_FIRST_POSTS:
             return{
-                ...state, posts:[...action.payload]
+                ...state, posts:[...action.payload],
+                postLength:action.payload.length
             }
         case GET_POSTS:
             return{
-                ...state, posts:[...state.posts,...action.payload]
+                ...state, posts:[...state.posts,...action.payload],
+                postLength:action.payload.length
+                
             }
         case GET_POST_DETAIL:
             return{
