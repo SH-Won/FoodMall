@@ -9,6 +9,7 @@ import Auth from "./hoc/auth";
 import Navbar from './components/views/Navbar/Navbar'
 import Footer from "./components/views/Footer/Footer"
 import LandingPage from './_pages/LandingPage';
+import DetailPostPage from './_pages/DetailPostPage';
 //import LandingContainer from './views/LandingPage/LandingContainer';
 
 //import UploadContainer from '../components/views/UploadPage/UploadContainer';
@@ -47,6 +48,8 @@ function App() {
           <Route exact path="/test" component ={Auth(TestPage,null)} />
           <Route exact path="/test1" component ={Auth(LandingContainer,null)} /> */}
           <Route exact path="/" component={Auth(LandingPage,null)} />
+          <Route exact path="/category/:id" component={Auth(LandingPage,null)}/>
+          <Route exact path="/detail/:id" component={Auth(DetailPostPage,null)} />
         </Switch>
       </div>
       
