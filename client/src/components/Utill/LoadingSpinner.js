@@ -1,15 +1,17 @@
-import React from 'react'
+import React,{useRef} from 'react'
 import '../../styles/LoadingSpinner.css';
 
-const LoadingSpinner = () => {
+const LoadingSpinner = (props) => {
+    
+    
     return (
-        <div className="loading-container">
-            
+        <div style={{...props}}>
+         <div className="loading-container">
             <div className="loading-item" ></div>
             <div className="loading-item" ></div>
             <div className="loading-item" ></div>
             <div className="loading-item" ></div>
-            
+         </div>
         </div>
     )
 }

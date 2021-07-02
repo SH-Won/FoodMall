@@ -39,7 +39,8 @@ const postSchema = mongoose.Schema({
     },
     disLikeUser:{
         type:Array
-    }
+    },
+    
 
     
 },{timestamps:true})

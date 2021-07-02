@@ -24,16 +24,23 @@ const useFetch = (action,query) => {
         
         }
 
-       
-       
-       
     },[query])
+
+    // useEffect(()=>{
+    //     dispatch(action[0](query))
+    //     .then(response => setLoading(false))
+
+    // },[])
+
+    // useEffect(()=>{
+    //     dispatch(action[1](query))
+    //     .then(response=> setLoading(false))
+    // },[query])
 
     return {
         posts,
         postLength,
-        loading
-        
+        loading 
     }
     
 }

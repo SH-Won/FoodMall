@@ -49,7 +49,7 @@ function App() {
           <Route exact path="/test1" component ={Auth(LandingContainer,null)} /> */}
           <Route exact path="/" component={Auth(LandingPage,null)} />
           <Route exact path="/category/:id" component={Auth(LandingPage,null)}/>
-          <Route exact path="/detail/:id" component={Auth(DetailPostPage,null)} />
+          <Route path="/detail/:id" component={Auth(DetailPostPage,null)} />
         </Switch>
       </div>
       
