@@ -147,5 +147,24 @@ router.get('/getCartItemDetail',(req,res)=>{
     })
 })
 
+router.get('/getUserCartItem',(req,res)=>{
+    let postIds = req.query.postIds;
+    let type = req.query.type;
+    if(type === 'array'){
+       let ids = req.query.postIds.split(',');
+       postIds=[];
+       postIds=ids.map(id => id);
+
+    }
+    Post.find({_id:{$in:postIds}})
+    .populate('writer')
+    .exec((err,posts)=>{
+        if(err) res.status(400).json({success:false,err})
+        res.status(200).json(posts);
+    })
+    
+
+})
+
 
 module.exports = router;

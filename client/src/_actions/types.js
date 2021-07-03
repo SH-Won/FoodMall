@@ -6,6 +6,9 @@ export const ADD_CART_ITEM='add_cart_item';
 export const GET_CART_ITEM_DETAIL='get_cart_item_detail';
 export const REMOVE_CART_ITEM = 'remove_cart_item';
 
+export const ADD_USER_CART_ITEM='add_user_cart_item';
+export const GET_USER_CART_ITEM='get_user_cart_item';
+
 export const UPLOAD_FILES = 'upload_file';
 export const UPLOAD_POST = 'upload_post';
 export const GET_POSTS = 'get_posts';

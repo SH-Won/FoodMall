@@ -202,4 +202,53 @@ router.get('/removeCartItem',auth,(req,res)=>{
         )
 })
 
+router.post('/addUserCartItem',auth,(req,res)=>{
+   
+    User.findOne(
+        {_id:req.user._id},
+        (err,userInfo)=>{
+            let isExist = false;
+            userInfo.cart.forEach(cart=>{
+                if(cart.id === req.body.postId){
+                 isExist =true;
+                }
+            })
+
+            if(isExist){
+                User.findOneAndUpdate(
+                    {_id:req.user._id,'cart.id':req.body.postId},
+                    {$inc:{'cart.$.quantity':req.body.quantity}},
+                    {new:true},
+                    ()=>{
+                        if(err) res.status(400).json({success:false,err})
+                        res.status(200).json(userInfo.cart);
+                        console.log('exec');
+                    }
+
+                )
+            }
+            else{
+                User.findOneAndUpdate(
+                    {_id:req.user._id},
+                    {$push:{
+                        cart:{
+                            id:req.body.postId,
+                            quantity:Number(req.body.quantity),
+                            date:Date.now()
+                        }
+                    }},
+                    {new:true},
+                    (err,userInfo) =>{
+                        if(err) res.status(400).json({success:false,err})
+                        res.status(200).json(userInfo.cart);
+                    }
+                )
+            }
+            
+        }
+    )
+})
+
+
+
 module.exports = router;

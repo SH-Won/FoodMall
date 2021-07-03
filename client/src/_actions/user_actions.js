@@ -6,9 +6,15 @@ import {
     LOGOUT_USER,
     ADD_CART_ITEM,
     GET_CART_ITEM_DETAIL,
-    REMOVE_CART_ITEM
+    REMOVE_CART_ITEM,
+
+    ADD_USER_CART_ITEM,
+    GET_USER_CART_ITEM
+
 } from './types';
 import { USER_SERVER } from '../components/Config.js';
+
+
 
 export function registerUser(dataToSubmit){
     const request = axios.post(`${USER_SERVER}/register`,dataToSubmit)
@@ -148,5 +154,41 @@ export function removeCartItem(postId){
         payload:request
     }
 }
+
+
+/* 리뉴얼 */
+
+export function addUserCartItem(variable){
+
+    const request = axios.post(`${USER_SERVER}/addUserCartItem`,variable)
+    .then(response => response.data);
+
+    return {
+        type:ADD_USER_CART_ITEM,
+        payload:request
+    }
+}
+
+export function getUserCartItem(postIds,userCart){
+    const request =axios.get(`/api/posts/getUserCartItem?postIds=${postIds}&type=array`)
+    .then(response => {
+        userCart.forEach(cart =>{
+            response.data.forEach((post,index) =>{
+                if(post._id === cart.id){
+                    response.data[index].quantity = cart.quantity;
+                }
+            })
+        })
+
+        return response.data;
+
+    })
+
+    return {
+        type:GET_USER_CART_ITEM,
+        payload:request
+    }
+}
+
 
 

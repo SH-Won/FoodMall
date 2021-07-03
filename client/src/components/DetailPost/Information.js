@@ -1,7 +1,7 @@
 import React from 'react'
 import Carousel from '../Utill/Carousel'
 
-const Information = ({post}) => {
+const Information = ({post,handleQuantity,totalPrice}) => {
 
     return (
         <section className="information-container">
@@ -23,10 +23,13 @@ const Information = ({post}) => {
                         <dd>{post.price} 원</dd>
                     </dl>
                     <dl>
-                        <dt>추가 토핑</dt>
-                        <select>
-                            <option >올리브</option>
-                            <option >치즈</option>
+                        <dt>수량</dt>
+                        <select onChange={handleQuantity}>
+                            {Array.from({length:5},(_,i) => i+1).map((number,index) =>(
+                                <option key={number} value={number}>
+                                    {number}
+                                </option>
+                            ))}
                         </select>
                     </dl>
                 </div>
@@ -34,7 +37,7 @@ const Information = ({post}) => {
                 <div className="explain-total">
                     <dl>
                         <dt>총 주문금액</dt>
-                        <dd>{post.price} 원</dd>
+                        <dd>{totalPrice} 원</dd>
                     </dl>
 
                 </div>

@@ -8,8 +8,11 @@ import Auth from "./hoc/auth";
 //import NavBar from "./views/NavBar/NavBar";
 import Navbar from './components/views/Navbar/Navbar'
 import Footer from "./components/views/Footer/Footer"
-import LandingPage from './_pages/LandingPage';
-import DetailPostPage from './_pages/DetailPostPage';
+
+// import LandingPage from './_pages/LandingPage';
+// import DetailPostPage from './_pages/DetailPostPage';
+// import LoginPage from './_pages/LoginPage';
+// import RegisterPage from './_pages/RegisterPage';
 //import LandingContainer from './views/LandingPage/LandingContainer';
 
 //import UploadContainer from '../components/views/UploadPage/UploadContainer';
@@ -29,7 +32,11 @@ import DetailPostPage from './_pages/DetailPostPage';
 // const TestPage = lazy (()=>import('./views/TestPage/Container'));
 // const LandingContainer = lazy(()=>import('./views/LandingPage/LandingContainer'));
 
-
+const LoginPage = lazy (()=> import('./_pages/LoginPage'));
+const RegisterPage = lazy (()=> import('./_pages/RegisterPage'));
+const LandingPage = lazy (()=> import('./_pages/LandingPage'));
+const DetailPostPage = lazy (()=> import('./_pages/DetailPostPage'));
+const CartPage = lazy(()=>import('./_pages/CartPage'));
 function App() {
   return (
     <>
@@ -47,9 +54,13 @@ function App() {
           <Route exact path="/cart" component={Auth(CartPage,true)} />
           <Route exact path="/test" component ={Auth(TestPage,null)} />
           <Route exact path="/test1" component ={Auth(LandingContainer,null)} /> */}
+          
           <Route exact path="/" component={Auth(LandingPage,null)} />
           <Route exact path="/category/:id" component={Auth(LandingPage,null)}/>
           <Route path="/detail/:id" component={Auth(DetailPostPage,null)} />
+          <Route exact path="/login" component={Auth(LoginPage, false)} />
+          <Route exact path="/register" component={Auth(RegisterPage, false)} />
+          <Route exact path="/cart" component={Auth(CartPage,true)} />
         </Switch>
       </div>
       
