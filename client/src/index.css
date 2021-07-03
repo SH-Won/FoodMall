@@ -50,14 +50,15 @@ input.error {
 
 .button {
   width: 15%;
-  color:blue;
-  outline: transparent;
-  border-radius: 1rem;
-  background-color: transparent;
-  border: 1px solid aliceblue;
-  box-shadow: 0 0 10px cadetblue;
+  color:white;
+  outline: none;
+  
+  background-color: #4f5152;
+  
   cursor: pointer;
-  margin-top:1rem;
+  border:transparent;
+  padding:.5rem;
+  
 }
  a{
    text-decoration: none;

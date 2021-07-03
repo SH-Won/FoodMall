@@ -3,6 +3,7 @@ import {Route} from 'react-router-dom';
 import useFetch from '../hook/useFetch';
 import {getPostDetail} from '../_actions/post_actions';
 import LoadingSpinner from '../components/Utill/LoadingSpinner';
+import Button from '../components/Utill/Button';
 import '../styles/DetailPostPage.css';
 
 import Information from '../components/DetailPost/Information';
@@ -23,19 +24,19 @@ const DetailPostPage = (props) => {
         justifyContent:'center',
         alignItems:'center'
     }
-    console.log(post);
+    
     
     if(loading) return <LoadingSpinner {...loadingStyle}/>
 
     return (
         <div>
             <Information post={post[0]}/>
-            
-            {/* 상세정보
-            물품리스트
-            코멘트 */}
+            <Button name="장바구니"/>
             <TabMenu match={props.match}/>
-            <Route exact path={props.match.path} component={TabDetail}/>
+            
+            <Route exact path={props.match.path} >
+               <TabDetail post={post} />
+            </Route>
             <Route path={`${props.match.path}/:name`} component={Tab}/>
                 
             
