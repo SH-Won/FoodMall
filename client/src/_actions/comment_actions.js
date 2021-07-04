@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {SAVE_COMMENT,GET_COMMENTS} from './types';
+
 export function saveComment(variable){
     const request = axios.post('/api/comment/saveComment',variable)
     .then(response => response.data)

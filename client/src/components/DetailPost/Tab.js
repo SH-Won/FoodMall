@@ -4,9 +4,8 @@ import TabComment from './TabComment';
 import TabDetail from './TabDetail';
 
 const Tab = (props) => {
-    const url = props.match.params.name ;
-    console.log(url);
-    console.log(props.match);
+    const url = props.match.params.name;
+    console.log('props.match',props.match);
 
    switch(url){
      

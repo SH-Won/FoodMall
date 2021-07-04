@@ -1,6 +1,7 @@
 import React from 'react'
 
-const TabComment = () => {
+const TabComment = (props) => {
+    console.log('props.match',props.match);
     return (
         <div>
             코멘트
