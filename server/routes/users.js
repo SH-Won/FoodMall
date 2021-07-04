@@ -248,6 +248,30 @@ router.post('/addUserCartItem',auth,(req,res)=>{
         }
     )
 })
+router.post('/deleteUserCartItem',auth,(req,res)=>{
+    User.findOneAndUpdate(
+        {_id:req.user._id},
+        {$pull:{
+            cart:{
+                id:req.body.postId
+            }
+        }},
+        {new:true},
+        (err,userInfo)=>{
+            let postIds = userInfo.cart.map(cart => cart.id);
+            Post.find({_id:{$in:postIds}})
+            .populate('writer')
+            .exec((err,posts)=>{
+                if(err) res.status(400).json({success:false,err})
+                res.status(200).json({
+                    success:true,
+                    cartDetail:posts,
+                    cart:userInfo.cart
+                })
+            })
+        }
+    )
+})
 
 
 

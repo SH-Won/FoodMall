@@ -8,6 +8,7 @@ export const REMOVE_CART_ITEM = 'remove_cart_item';
 
 export const ADD_USER_CART_ITEM='add_user_cart_item';
 export const GET_USER_CART_ITEM='get_user_cart_item';
+export const DELETE_USER_CART_ITEM='delete_user_cart_item'
 
 export const UPLOAD_FILES = 'upload_file';
 export const UPLOAD_POST = 'upload_post';

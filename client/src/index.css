@@ -53,9 +53,7 @@ input.error {
   width: 15%;
   color:white;
   outline: none;
-  
   background-color: #4f5152;
-  
   cursor: pointer;
   border:transparent;
   padding:.5rem;

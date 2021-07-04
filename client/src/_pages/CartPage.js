@@ -1,11 +1,15 @@
-import React,{useEffect} from 'react'
+import React,{useState,useEffect} from 'react'
 import {useDispatch,useSelector} from 'react-redux';
-import {getUserCartItem} from '../_actions/user_actions'
+import CartItem from '../components/Cart/CartItem';
+import {getUserCartItem,deleteUserCartItem} from '../_actions/user_actions'
+
+import '../styles/Cart.css';
 
 
 const CartPage = () => {
     const dispatch = useDispatch();
-    const {userData} = useSelector(state => state.user);
+    const [loading,setLoading] =useState(true);
+    const {userData,cartDetail} = useSelector(state => state.user);
 
     useEffect(()=>{
         let postIds =[];
@@ -18,11 +22,14 @@ const CartPage = () => {
 
     },[userData])
 
-    
+    const deleteCartItem = (postId) =>{
+          dispatch(deleteUserCartItem(postId))
+    }
+
 
     return (
         <div>
-            
+            <CartItem items={cartDetail} deleteCartItem={deleteCartItem}/>  
         </div>
     )
 }

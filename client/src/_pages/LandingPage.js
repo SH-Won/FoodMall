@@ -32,12 +32,7 @@ const LandingPage = (props) => {
         justifyContent:'center',
         alignItems:'center'
     }
-    // const buttonStyle ={
-    //     display:'flex',
-    //     justifyContent:'center',
-    //     alignItems:'center',
-    //     marginTop:'.5rem',
-    // }
+    
     const loadMorePosts =()=>{
          let newQuery = {...query};
          newQuery.skip = newQuery.skip + newQuery.limit;
@@ -57,9 +52,7 @@ const LandingPage = (props) => {
     },[loading]);
    // 처음 페이지 로드 => 
 
-    console.log('pageLoading',pageLoading);
-    console.log('loading',loading);
-    console.log('post',posts);
+   
     
     
     if(pageLoading){
@@ -78,7 +71,9 @@ const LandingPage = (props) => {
          <LoadingSpinner/> 
          :
          postLength >= query.limit &&
+         <div style={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:'.5rem',}}>
          <Button click={loadMorePosts} name="더 보기" />
+         </div>
          }
          </Route>
 

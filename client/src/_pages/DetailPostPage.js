@@ -56,7 +56,9 @@ const DetailPostPage = (props) => {
     return (
         <div>
             <Information post={post[0]} handleQuantity={handleQuantity} totalPrice={totalPrice}/>
+            <div style={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:'.5rem'}}>
             <Button name="장바구니" click={addToCart}/>
+            </div>
             <TabMenu match={props.match}/>
             
             <Route exact path={props.match.path} >

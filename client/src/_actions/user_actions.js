@@ -9,7 +9,8 @@ import {
     REMOVE_CART_ITEM,
 
     ADD_USER_CART_ITEM,
-    GET_USER_CART_ITEM
+    GET_USER_CART_ITEM,
+    DELETE_USER_CART_ITEM
 
 } from './types';
 import { USER_SERVER } from '../components/Config.js';
@@ -186,6 +187,24 @@ export function getUserCartItem(postIds,userCart){
 
     return {
         type:GET_USER_CART_ITEM,
+        payload:request
+    }
+}
+
+export function deleteUserCartItem(postId){
+    const request = axios.post(`${USER_SERVER}/deleteUserCartItem`,{postId})
+    .then(response =>{
+        response.data.cart.forEach(cart =>{
+            response.data.cartDetail.forEach((info,index)=>{
+                if(cart.id === info._id)
+                 response.data.cartDetail[index].quantity = cart.quantity;
+            })
+        })
+        return response.data;
+    })
+
+    return{
+        type:DELETE_USER_CART_ITEM,
         payload:request
     }
 }
