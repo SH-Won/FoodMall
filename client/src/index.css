@@ -59,6 +59,11 @@ input.error {
   padding:.5rem;
   
 }
+.textarea{
+  width:80%;
+  
+
+}
  a{
    text-decoration: none;
    color:black !important;

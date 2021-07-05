@@ -3,7 +3,7 @@ import '../../styles/LoadingSpinner.css';
 
 const LoadingSpinner = (props) => {
     
-    
+    console.log(props);
     return (
         <div style={{...props}}>
          <div className="loading-container">
@@ -15,5 +15,9 @@ const LoadingSpinner = (props) => {
         </div>
     )
 }
+
+// LoadingSpinner.defaultProps ={
+
+// }
 
 export default LoadingSpinner

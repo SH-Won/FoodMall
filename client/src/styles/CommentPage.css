@@ -1,0 +1,32 @@
+.comment-wrap{
+    width:90%;
+    margin:0 auto;
+}
+.root-comment-container{
+    box-sizing: border-box;
+    border-bottom: 1px solid gray;
+    width:100%;
+    margin-bottom: .7rem;
+    padding:.5rem;
+
+
+}
+.root-comment-user{
+    display:flex;
+    align-items: center;
+    
+}
+.root-comment-user > img{
+    width:25px;
+    height:25px;
+    border-radius: 50%;
+}
+.root-comment-user > span{
+    margin-left:1rem;
+    font-size: 0.7rem;
+}
+.root-comment-value{
+    margin-left:3rem;
+    
+
+}

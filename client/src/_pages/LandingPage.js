@@ -68,7 +68,7 @@ const LandingPage = (props) => {
          <Menu items={category}/>
          <LandingCard items={posts} loadMorePosts={loadMorePosts}/>
          {loading ? 
-         <LoadingSpinner/> 
+         <LoadingSpinner marginTop='3rem'/> 
          :
          postLength >= query.limit &&
          <div style={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:'.5rem',}}>
@@ -79,7 +79,9 @@ const LandingPage = (props) => {
 
          <Route exact path={`/category/:id`}>
          <LandingCard items={posts} loadMorePosts={loadMorePosts} />
+         <div style={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:'.5rem',}}>
          <Button click={loadMorePosts} name="더 보기"/>
+         </div>
          </Route>
          
          
