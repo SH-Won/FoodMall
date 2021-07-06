@@ -9,7 +9,7 @@ const CommentForm = (props) => {
     return (
         <form className="comment-form" onSubmit={click}>
            <div style={{display:'flex',justifyContent:'space-around',alignItems:'center'}}>
-              <TextArea value={value} onChange={onChange}/>
+              <TextArea value={value} onChange={onChange} style={{width:'70%'}}/>
               <Button name="댓글 달기" style={{width:'15%',backgroundColor:"blue"}} click={click}/>
            </div>
         </form>

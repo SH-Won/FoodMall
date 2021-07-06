@@ -2,14 +2,19 @@
     width:90%;
     margin:0 auto;
 }
-.root-comment-container{
+.single-comment{
     box-sizing: border-box;
     border-bottom: 1px solid gray;
+    padding:.3rem;
+    margin-bottom: .5rem;
+}
+
+.root-comment-container{
+    box-sizing: border-box;
+    
     width:100%;
     margin-bottom: .7rem;
-    padding:.5rem;
-
-
+    
 }
 .root-comment-user{
     display:flex;
@@ -22,7 +27,7 @@
     border-radius: 50%;
 }
 .root-comment-user > span{
-    margin-left:1rem;
+    margin-left:.5rem;
     font-size: 0.7rem;
 }
 .root-comment-value{

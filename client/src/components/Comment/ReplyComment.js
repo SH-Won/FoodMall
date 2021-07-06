@@ -3,7 +3,7 @@ import {useSelector} from 'react-redux';
 import RootComment from './RootComment';
 
 const ReplyComment = (props) => {
-
+    
     const [open,setOpen]=useState(false);
     
     const {parentCommentId,postId} = props;
@@ -15,13 +15,12 @@ const ReplyComment = (props) => {
         setOpen(open => !open)
     }
 
-    console.log(commentList);
-    console.log(replyCommentList)
+    console.log('replyCommentPage');
 
     const renderCommentList = () =>
         replyCommentList.map(comment => (
             
-            <div key={comment._id} >
+            <div key={comment._id} style={{margin:'1rem 0 0 1rem'}}>
             <RootComment comment={comment} userData={userData} postId={postId}/>
             <ReplyComment  parentCommentId={comment._id} postId={postId}/>
             </div>

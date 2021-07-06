@@ -7,6 +7,7 @@ import {saveComment} from '../../_actions/comment_actions'
 
 
 const RootComment = (props) => {
+    
     const dispatch = useDispatch();
     const {comment,userData,postId} = props;
     const [open,setOpen]=useState(false);
@@ -28,8 +29,10 @@ const RootComment = (props) => {
         }
         dispatch(saveComment(variable))
         setCommentValue('')
+        setOpen(false);
 
     }
+    console.log('rootCommentPage');
 
     const buttonProps = {
         click:handleOpenForm,
