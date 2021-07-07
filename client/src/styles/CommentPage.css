@@ -2,6 +2,14 @@
     width:90%;
     margin:0 auto;
 }
+.comment-form{
+    width:90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding:.5rem;
+    box-sizing: border-box;
+}
 .single-comment{
     box-sizing: border-box;
     border-bottom: 1px solid gray;
@@ -34,4 +42,18 @@
     margin-left:3rem;
     
 
+}
+.reply-comment{
+    
+    width:100%;
+    margin-top:.5rem;
+    height:0;
+    overflow-y: hidden;
+    transition:height 1s;
+    box-sizing: border-box;
+
+}
+.reply-comment.act{
+    border-top: 1px dotted rgb(121, 121, 38) ;
+    height:auto
 }

@@ -41,6 +41,12 @@ body {
 input.error {
   border-color: red;
 }
+.layout{
+  display:flex;
+  flex-direction: column;
+  
+  align-items: center;
+}
 
 
 .input-feedback {

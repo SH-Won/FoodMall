@@ -1,6 +1,8 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect,useCallback,useMemo} from 'react'
 import {useSelector} from 'react-redux';
+import CommentList from './CommentList';
 import RootComment from './RootComment';
+
 
 const ReplyComment = (props) => {
     
@@ -17,20 +19,27 @@ const ReplyComment = (props) => {
 
     console.log('replyCommentPage');
 
-    const renderCommentList = () =>
-        replyCommentList.map(comment => (
-            
-            <div key={comment._id} style={{margin:'1rem 0 0 1rem'}}>
-            <RootComment comment={comment} userData={userData} postId={postId}/>
-            <ReplyComment  parentCommentId={comment._id} postId={postId}/>
-            </div>
-        ))
+    // const renderCommentList = useMemo(()=>(
+    //     replyCommentList.map(comment => (
+    //         <div key={comment._id} style={{margin:'1rem 0 0 2rem'}}>
+    //         <RootComment comment={comment} userData={userData} postId={postId}/>
+    //         <ReplyComment  parentCommentId={comment._id} postId={postId}/>
+    //         </div>
+    //     ))
+    // ),[replyCommentList])
+    
     
 
     return (
-        <div>
-            <span onClick={handleOpenReply}>답글 {replyCommentList.length} 개 보기</span>
-            {open && renderCommentList()}
+        <div style={{}}>
+            <span 
+            onClick={handleOpenReply}>답글 {replyCommentList.length} 개 보기</span>
+            
+            <div className={open ? "reply-comment act" : "reply-comment"}>
+            <CommentList commentList={replyCommentList} userData={userData} postId={postId} isReply={true}/>
+            </div>
+            
+            
             
         </div>
     )

@@ -2,10 +2,11 @@ import React,{useState,useEffect,useMemo} from 'react'
 import {useSelector,useDispatch} from 'react-redux';
 import CommentForm from '../components/Comment/CommentForm';
 import RootComment from '../components/Comment/RootComment';
-
 import {getComments, saveComment} from '../_actions/comment_actions';
 import '../styles/CommentPage.css';
 import ReplyComment from '../components/Comment/ReplyComment';
+import Layout from '../components/Utill/Layout';
+import CommentList from '../components/Comment/CommentList';
 const CommentPage = ({match}) => {
     
     const dispatch = useDispatch();
@@ -42,27 +43,15 @@ const CommentPage = ({match}) => {
     }
     console.log('commentPage');
 
-    const renderCommentList = useMemo(()=>(
-        commentList.map(comment => (
-            !comment.reply &&
-            <div key={comment._id} className="single-comment">
-            <RootComment comment={comment} userData={userData} postId={postId}/>
-            <ReplyComment  parentCommentId={comment._id} postId={postId} />
-            </div>
-        ))
-    ),[commentList])
-    
-
+ 
 
     return (
-        <div>
+        <Layout>
+
             <CommentForm {...commentProps}/>
-            <div className="comment-wrap">
-            {renderCommentList}
-            </div>
+            <CommentList commentList={commentList} userData={userData} postId={postId} isReply={false}/>
             
-            
-        </div>
+        </Layout>
     )
 }
 

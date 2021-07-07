@@ -15,9 +15,7 @@ const CartPage = () => {
         let postIds =[];
         if(userData && userData.cart.length > 0 ){
             userData.cart.forEach(item => postIds.push(item.id))
-
             dispatch(getUserCartItem(postIds,userData.cart))
-
         }
 
     },[userData])

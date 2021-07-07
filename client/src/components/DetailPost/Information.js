@@ -37,7 +37,7 @@ const Information = ({post,handleQuantity,totalPrice}) => {
                 <div className="explain-total">
                     <dl>
                         <dt>총 주문금액</dt>
-                        <dd>{totalPrice} 원</dd>
+                        <dd>{totalPrice.toLocaleString('ko-KR')} 원</dd>
                     </dl>
 
                 </div>
