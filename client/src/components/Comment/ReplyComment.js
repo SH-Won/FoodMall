@@ -32,15 +32,14 @@ const ReplyComment = (props) => {
 
     return (
         <div style={{}}>
-            <span 
-            onClick={handleOpenReply}>답글 {replyCommentList.length} 개 보기</span>
+            <span onClick={handleOpenReply}> 
+              답글 {replyCommentList.length} 개 보기
+            </span>
             
             <div className={open ? "reply-comment act" : "reply-comment"}>
             <CommentList commentList={replyCommentList} userData={userData} postId={postId} isReply={true}/>
             </div>
-            
-            
-            
+           
         </div>
     )
 }

@@ -12,7 +12,7 @@ const CommentList = (props) => {
          commentList.map(comment => (
             
             
-              <div key={comment._id} className="single-comment">
+              <div key={comment._id} style={{margin:'1rem 0 0 2rem'}}>
                 <RootComment comment={comment} userData={userData} postId={postId}/>
                 <ReplyComment  parentCommentId={comment._id} postId={postId} />
               </div>
@@ -30,6 +30,7 @@ const CommentList = (props) => {
          },[commentList])
 
     return (
+      
         <div className="comment-wrap">
           
           {renderCommentList}

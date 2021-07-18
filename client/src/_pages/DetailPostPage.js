@@ -15,6 +15,7 @@ import TabDetail from '../components/DetailPost/TabDetail';
 import TabBoard from '../components/DetailPost/TabBoard';
 import TabComment from '../components/DetailPost/TabComment';
 import Tab from '../components/DetailPost/Tab';
+import SideRecommend from '../components/SideRecommend/SideRecommend';
 const DetailPostPage = (props) => {
     const dispatch =useDispatch();
     const query = props.match.params.postId;
@@ -22,10 +23,11 @@ const DetailPostPage = (props) => {
     const price = post[0] && post[0].price.split(',').join('');
     const [quantity,setQuantity]=useState(1);
     const [totalPrice,setTotalPrice]=useState();
-    
+   
+
      useEffect(()=>{
         document.documentElement.scrollTop =0;
-         setTotalPrice(price)
+         setTotalPrice(pre => parseInt(price,10).toLocaleString('ko-KR'))
          
      },[post])
  
@@ -36,10 +38,9 @@ const DetailPostPage = (props) => {
         justifyContent:'center',
         alignItems:'center'
     }
-    console.log(quantity)
+    
     
     const handleQuantity = (e)=>{
-        
         setQuantity(e.target.value);
         setTotalPrice(pre => Number(price) * e.target.value)
 
@@ -52,29 +53,30 @@ const DetailPostPage = (props) => {
         dispatch(addUserCartItem(variable))
     }
     
+  
     
     if(loading) return <LoadingSpinner {...loadingStyle}/>
 
     return (
-        <div>
+        <div style={{position:'relative'}}>
+            
+            <SideRecommend />
             <Information post={post[0]} handleQuantity={handleQuantity} totalPrice={totalPrice}/>
             <div style={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:'.5rem'}}>
             <Button name="장바구니" click={addToCart}/>
             </div>
+
             <TabMenu match={props.match}/>
-            
-            <Route exact path={props.match.path} >
-               <TabDetail post={post} />
-            </Route>
-            
-            {/* <Route path={`${props.match.path}/:name`} component={Tab}/>
-                 */}
-            
-            <Route exact path={`${props.match.path}/board`} >
-                 <TabBoard/>
-            </Route>
-            <Route exact path={`${props.match.path}/comment`} component={CommentPage}/>
+             <Route exact path={props.match.path} >
+                <TabDetail post={post} />
+             </Route>
+             <Route exact path={`${props.match.path}/board`} >
+                  <TabBoard/>
+             </Route>
+             <Route exact path={`${props.match.path}/comment`} component={CommentPage}/>
                  
+                  {/* <Route path={`${props.match.path}/:name`} component={Tab}/>
+                 */}
             
             
             

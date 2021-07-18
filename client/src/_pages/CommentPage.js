@@ -1,11 +1,10 @@
 import React,{useState,useEffect,useMemo} from 'react'
 import {useSelector,useDispatch} from 'react-redux';
 import CommentForm from '../components/Comment/CommentForm';
-import RootComment from '../components/Comment/RootComment';
 import {getComments, saveComment} from '../_actions/comment_actions';
 import '../styles/CommentPage.css';
-import ReplyComment from '../components/Comment/ReplyComment';
 import Layout from '../components/Utill/Layout';
+import LoadingSpinner from '../components/Utill/LoadingSpinner';
 import CommentList from '../components/Comment/CommentList';
 const CommentPage = ({match}) => {
     
@@ -14,6 +13,8 @@ const CommentPage = ({match}) => {
     const {commentList} =useSelector(state => state.comment);
     const postId = match.params.postId;
     const [commentValue,setCommentValue] = useState('');
+    const [loading,setLoading]=useState(true);
+
     const handleChangeComment = (e)=>{
         setCommentValue(e.target.value);
     }
@@ -29,20 +30,32 @@ const CommentPage = ({match}) => {
 
     }
     useEffect(()=>{
+
         console.log('comment effect');
         dispatch(getComments(postId))
+        .then(response => setLoading(false))
         
 
     },[])
     
 
     let commentProps = {
+        style:{
+             margin:'1.5rem'
+        },
         value:commentValue,
         onChange:handleChangeComment,
         click:onSubmitComment
     }
     console.log('commentPage');
 
+     
+    if(loading){
+        let loadingStyle={
+            marginTop:'2rem',
+        }
+        return <LoadingSpinner {...loadingStyle}/>
+    }
  
 
     return (

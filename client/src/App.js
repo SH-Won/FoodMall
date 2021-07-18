@@ -9,7 +9,7 @@ import Auth from "./hoc/auth";
 import Navbar from './components/views/Navbar/Navbar'
 import Footer from "./components/views/Footer/Footer"
 import LoadingSpinner from './components/Utill/LoadingSpinner';
-
+import SideRecommend from './components/SideRecommend/SideRecommend';
 // import LandingPage from './_pages/LandingPage';
 // import DetailPostPage from './_pages/DetailPostPage';
 // import LoginPage from './_pages/LoginPage';
@@ -63,7 +63,7 @@ function App() {
           <Route exact path="/cart" component={Auth(CartPage,true)} />
           <Route exact path="/test" component ={Auth(TestPage,null)} />
           <Route exact path="/test1" component ={Auth(LandingContainer,null)} /> */}
-          
+          <Route exact path='/side' component={SideRecommend} />
           <Route exact path="/" component={Auth(LandingPage,null)} />
           <Route exact path="/category/:id" component={Auth(LandingPage,null)}/>
           <Route path="/detail/:postId" component={Auth(DetailPostPage,null)} />

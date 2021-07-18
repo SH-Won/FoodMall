@@ -17,7 +17,7 @@ const LandingPage = (props) => {
     const [pageLoading,setPageLoading]=useState(true);
     const [query,setQuery]=useState({
         skip:0,
-        limit:4,
+        limit:6,
         filter:props.match.params.id ? 
         { category : [ Number(props.match.params.id)] } :
         null
@@ -83,6 +83,15 @@ const LandingPage = (props) => {
          <Button click={loadMorePosts} name="더 보기"/>
          </div>
          </Route>
+{/* 
+         {loading ? 
+         <LoadingSpinner marginTop='3rem'/> 
+         :
+         postLength >= query.limit &&
+         <div style={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:'.5rem',}}>
+         <Button click={loadMorePosts} name="더 보기" />
+         </div>
+         } */}
          
          
         </>
