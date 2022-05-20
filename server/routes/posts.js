@@ -53,7 +53,7 @@ router.post('/uploadPost',(req,res)=>{
 })
 
 router.get('/getPosts',(req,res)=>{
-   console.log('searchValue',req.query.searchValue);
+//    console.log('searchValue',req.query.searchValue);
    let skip = req.query.skip ? parseInt(req.query.skip) : Number(0);
    let limit = req.query.limit ? parseInt(req.query.limit) : 100; 
    //let order = req.body.order ? req.body.order :'desc';
@@ -96,12 +96,14 @@ router.get('/getPosts',(req,res)=>{
    })
    }
    else{
+       console.log(skip,'skip',limit,'limit');
     Post.find(findArgs)
     .skip(skip)
     .limit(limit)
     .populate('writer')
     .exec((err,posts)=>{
         if (err) res.json({success:false,err})
+        console.log('posts',posts);
         res.json(posts);
        
     })
