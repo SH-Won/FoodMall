@@ -2,7 +2,6 @@ import React from 'react'
 import Carousel from '../Utill/Carousel'
 
 const Information = ({post,handleQuantity,totalPrice}) => {
-
     return (
         <section className="information-container">
 

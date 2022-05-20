@@ -30,8 +30,6 @@ const Carousel = ({carouselImages}) => {
         //23451 => 34512 => 23451
        
         //setImages(images => [...images.slice(1,images.length).concat([images[0]])])
-       
-        console.log('1');
         
         setDirection(0);
         
@@ -56,7 +54,6 @@ const Carousel = ({carouselImages}) => {
     }
     function transitionEnd(){
         const {current}=slider;
-        console.dir(current);
         current.style.transition='none';
         current.style.transform=''
         if(direction === 1){
@@ -66,7 +63,6 @@ const Carousel = ({carouselImages}) => {
         // 23451 => 34512
          else{
         setImages(images=>[images[images.length-1]].concat(images.slice(0,images.length-1)))
-        console.log('else');
           //setImages(images =>[])
          }
 

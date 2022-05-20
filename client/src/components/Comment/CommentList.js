@@ -6,7 +6,6 @@ const CommentList = (props) => {
     const {commentList,userData,postId,isReply} =props;
     
     const renderCommentList = useMemo(()=>{
-        console.log('commentList Component');
         return isReply ? 
         
          commentList.map(comment => (

@@ -97,6 +97,7 @@ router.get('/getPosts',(req,res)=>{
    }
    else{
        console.log(skip,'skip',limit,'limit');
+       
     Post.find(findArgs)
     .skip(skip)
     .limit(limit)

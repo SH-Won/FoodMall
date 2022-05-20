@@ -28,9 +28,9 @@ const DetailPostPage = (props) => {
      useEffect(()=>{
         document.documentElement.scrollTop =0;
          setTotalPrice(pre => parseInt(price,10).toLocaleString('ko-KR'))
-         
+         const number = 10;
      },[post])
- 
+     
     const loadingStyle = {
         display:'flex',
         width:'100%',
@@ -60,7 +60,7 @@ const DetailPostPage = (props) => {
     return (
         <div style={{position:'relative'}}>
             
-            <SideRecommend />
+            {/* <SideRecommend /> */}
             <Information post={post[0]} handleQuantity={handleQuantity} totalPrice={totalPrice}/>
             <div style={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:'.5rem'}}>
             <Button name="장바구니" click={addToCart}/>
@@ -68,7 +68,7 @@ const DetailPostPage = (props) => {
 
             <TabMenu match={props.match}/>
              <Route exact path={props.match.path} >
-                <TabDetail post={post} />
+                <TabDetail post={post[0]} />
              </Route>
              <Route exact path={`${props.match.path}/board`} >
                   <TabBoard/>

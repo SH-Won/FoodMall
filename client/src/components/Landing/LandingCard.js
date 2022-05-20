@@ -3,8 +3,7 @@ import {Link} from 'react-router-dom';
 
 const LandingCard = (props) => {
 
-    const{items,loadMorePosts} = props;
-
+    const {items} = props;
     return (
         <div className="container">
             <div className="card-container">
@@ -16,7 +15,8 @@ const LandingCard = (props) => {
                     </div>
                     <ul className="card-information">
                        <li>{item.title}</li>
-                       <li>{item.price}</li>
+                       <li>{parseInt(item.price,10).toLocaleString('ko-KR')}원</li>
+                       
                     </ul>
                     </Link>
                 </div>

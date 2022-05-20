@@ -4,7 +4,6 @@ import Button from '../Utill/Button';
 
 const CommentForm = (props) => {
     const {value,onChange,click,style} =props;
-    console.log(props);
     
     return (
         <form className="comment-form" style={{...style}} onSubmit={click}>

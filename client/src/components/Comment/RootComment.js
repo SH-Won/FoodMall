@@ -32,7 +32,6 @@ const RootComment = (props) => {
         setOpen(false);
 
     }
-    console.log('rootCommentPage');
 
     const buttonProps = {
         click:handleOpenForm,

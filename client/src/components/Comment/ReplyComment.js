@@ -17,8 +17,6 @@ const ReplyComment = (props) => {
         setOpen(open => !open)
     }
 
-    console.log('replyCommentPage');
-
     // const renderCommentList = useMemo(()=>(
     //     replyCommentList.map(comment => (
     //         <div key={comment._id} style={{margin:'1rem 0 0 2rem'}}>

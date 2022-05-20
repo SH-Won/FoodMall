@@ -60,8 +60,6 @@ export  function getPostDetail(postId){
     const request =  axios.get(`/api/posts/getPostDetail?postId=${postId}&type=single`)
     .then(response=>response.data)
 
-   // console.log('request',request);
-
     return{
         type:GET_POST_DETAIL,
         payload:request

@@ -2,10 +2,8 @@ import React,{useState,useRef,useCallback,useEffect} from 'react'
 
 const InfiniteScroll = (callback,hasMore,loading) => {
     
-    console.log('infiniteScroll');
     const observer =useRef();
     const handleScroll = ( ([entry],ob) =>{
-        console.log('entry',entry);
         
         if(entry.isIntersecting && hasMore){
             

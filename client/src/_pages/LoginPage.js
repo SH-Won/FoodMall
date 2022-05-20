@@ -82,14 +82,14 @@ function LoginPage(props) {
         return (
           <div className="app">
 
-            <Title level={2}>Log In</Title>
+            <Title level={2}>로그인</Title>
             <form onSubmit={handleSubmit} style={{ width: '350px' }}>
 
               <Form.Item required>
                 <Input
                   id="email"
                   prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                  placeholder="Enter your email"
+                  placeholder="이메일을 입력하세요"
                   type="email"
                   value={values.email}
                   onChange={handleChange}
@@ -107,7 +107,7 @@ function LoginPage(props) {
                 <Input
                   id="password"
                   prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                  placeholder="Enter your password"
+                  placeholder="비밀번호를 입력하세요"
                   type="password"
                   value={values.password}
                   onChange={handleChange}
@@ -126,16 +126,16 @@ function LoginPage(props) {
               )}
 
               <Form.Item>
-                <Checkbox id="rememberMe" onChange={handleRememberMe} checked={rememberMe} >Remember me</Checkbox>
+                <Checkbox id="rememberMe" onChange={handleRememberMe} checked={rememberMe} >이메일 기억하기</Checkbox>
                 <Link to="/reset_user" style={{ float: 'right' }}>
-                  forgot password
+                  비밀번호를 잊어 버리셨나요?
                   </Link>
                 <div>
                   <Button type="primary" htmlType="submit" className="login-form-button" style={{ minWidth: '100%' }} disabled={isSubmitting} onSubmit={handleSubmit}>
-                    Log in
+                    로그인
                 </Button>
                 </div>
-                Or <Link to="/register">register now!</Link>
+                or <Link to="/register">회원가입</Link>
               </Form.Item>
             </form>
           </div>

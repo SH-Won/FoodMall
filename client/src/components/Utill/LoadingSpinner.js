@@ -2,8 +2,7 @@ import React,{useRef} from 'react'
 import '../../styles/LoadingSpinner.css';
 
 const LoadingSpinner = (props) => {
-    
-    console.log(props);
+
     return (
         <div style={{...props}}>
          <div className="loading-container">

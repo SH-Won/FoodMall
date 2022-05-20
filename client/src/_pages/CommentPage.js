@@ -30,12 +30,8 @@ const CommentPage = ({match}) => {
 
     }
     useEffect(()=>{
-
-        console.log('comment effect');
         dispatch(getComments(postId))
         .then(response => setLoading(false))
-        
-
     },[])
     
 
@@ -47,8 +43,6 @@ const CommentPage = ({match}) => {
         onChange:handleChangeComment,
         click:onSubmitComment
     }
-    console.log('commentPage');
-
      
     if(loading){
         let loadingStyle={

@@ -17,7 +17,7 @@ const LandingPage = (props) => {
     const [pageLoading,setPageLoading]=useState(true);
     const [query,setQuery]=useState({
         skip:0,
-        limit:6,
+        limit:3,
         filter:props.match.params.id ? 
         { category : [ Number(props.match.params.id)] } :
         null
@@ -43,7 +43,6 @@ const LandingPage = (props) => {
     
     useEffect(()=>{
 
-        console.log('USEEFFECT')
         
         if(!loading)
         setPageLoading(false);

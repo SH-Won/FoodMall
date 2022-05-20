@@ -10,8 +10,6 @@ const useFetch = (action,query) => {
     const [hasMore,setHasMore]=useState();
 
     useEffect(()=>{
-        console.log(action);
-        console.log('useEffect');
         //setLoading(true);
          setLoading(true);
         if(action.length >=2 && query.skip !== 0){

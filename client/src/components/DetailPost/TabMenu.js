@@ -2,7 +2,6 @@ import React,{useEffect,useRef} from 'react'
 import {Link} from 'react-router-dom';
 
 const TabMenu = ({match}) => {
-    console.log('TabMenu',match);
     const list = useRef();
 
     useEffect(()=>{
@@ -10,7 +9,6 @@ const TabMenu = ({match}) => {
         let checkPath = pathArray[pathArray.length-1];
         let path = checkPath === match.params.postId ? '/' : checkPath;
 
-        console.dir(list);
 
         // switch(path){
         //     case match.params.postId :
@@ -38,7 +36,6 @@ const TabMenu = ({match}) => {
     },[])
 
     const handleClick = (e) =>{
-        console.dir(e.target);
         if(e.target.nodeName !== 'A') return
         e.target.parentElement.parentElement.children.forEach(child => child.classList.remove('act'));
         e.target.parentElement.classList.add('act');
