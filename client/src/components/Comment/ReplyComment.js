@@ -5,7 +5,7 @@ import RootComment from './RootComment';
 
 
 const ReplyComment = (props) => {
-    
+    console.log('replyComment Component');
     const [open,setOpen]=useState(false);
     
     const {parentCommentId,postId} = props;

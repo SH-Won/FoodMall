@@ -1,4 +1,4 @@
-import React,{useState,useEffect,useMemo} from 'react'
+import React,{useState,useEffect,useCallback,useRef} from 'react'
 import {useSelector,useDispatch} from 'react-redux';
 import CommentForm from '../components/Comment/CommentForm';
 import {getComments, saveComment} from '../_actions/comment_actions';
@@ -7,18 +7,16 @@ import Layout from '../components/Utill/Layout';
 import LoadingSpinner from '../components/Utill/LoadingSpinner';
 import CommentList from '../components/Comment/CommentList';
 const CommentPage = ({match}) => {
-    
+    console.log('comment Page')
     const dispatch = useDispatch();
     const {userData} = useSelector(state=>state.user);
     const {commentList} =useSelector(state => state.comment);
     const postId = match.params.postId;
     const [commentValue,setCommentValue] = useState('');
     const [loading,setLoading]=useState(true);
-
-    const handleChangeComment = (e)=>{
-        setCommentValue(e.target.value);
-    }
-    const onSubmitComment = (e) =>{
+    const handleChangeComment = e => setCommentValue(e.target.value);
+    
+    const onSubmitComment = useCallback((e) =>{
         e.preventDefault();
         let variable ={
             postId,
@@ -28,7 +26,8 @@ const CommentPage = ({match}) => {
         dispatch(saveComment(variable))
         setCommentValue('');
 
-    }
+    },[commentValue])
+
     useEffect(()=>{
         dispatch(getComments(postId))
         .then(response => setLoading(false))
