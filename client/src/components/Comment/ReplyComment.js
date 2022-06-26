@@ -12,6 +12,8 @@ const ReplyComment = (props) => {
     const {userData} = useSelector(state=>state.user);
     const {commentList} = useSelector(state => state.comment);
     const replyCommentList=commentList.filter(comment => comment.reply === parentCommentId);
+    // const replyCommentList=useMemo(() => commentList.filter(comment => comment.reply === parentCommentId),[commentList]);
+
  
     const handleOpenReply = () =>{
         setOpen(open => !open)

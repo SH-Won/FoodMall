@@ -15,8 +15,8 @@ const TabMenu = ({match}) => {
         //         return list.current.children[0].style.border='1px solid red'
 
         // }
-        
-        list.current.children.forEach((child,index) =>{
+
+        list.current.childNodes.forEach((child,index) =>{
             if (child.attributes.dataset.value === path){
                 child.classList.add('act');
 
@@ -37,7 +37,7 @@ const TabMenu = ({match}) => {
 
     const handleClick = (e) =>{
         if(e.target.nodeName !== 'A') return
-        e.target.parentElement.parentElement.children.forEach(child => child.classList.remove('act'));
+        e.target.parentElement.parentElement.childNodes.forEach(child => child.classList.remove('act'));
         e.target.parentElement.classList.add('act');
 
         if(e.target.parentElement === e.target.parentElement.parentElement.children[0])

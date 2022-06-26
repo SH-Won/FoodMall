@@ -28,7 +28,6 @@ const DetailPostPage = (props) => {
      useEffect(()=>{
         document.documentElement.scrollTop =0;
          setTotalPrice(pre => parseInt(price,10).toLocaleString('ko-KR'))
-         const number = 10;
      },[post])
      
     const loadingStyle = {
