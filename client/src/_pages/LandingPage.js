@@ -8,6 +8,7 @@ import {category} from '../datas/Data';
 import LoadingSpinner from '../components/Utill/LoadingSpinner';
 import Button from '../components/Utill/Button';
 import Menu from '../components/Landing/Menu';
+import InfiniteScroll from '../hook/InfiniteScroll';
 
 // 리스트 아이템을 누르면, 쿼리 filter가 추가되고,
 // list 아이템은 background-color 가 변경되고
@@ -25,6 +26,7 @@ const LandingPage = (props) => {
     })
     
     const {posts,postLength,loading} = useFetch([getFirstPosts,getPosts],query);
+    
     const loadingStyle = {
         display:'flex',
         width:'100%',
@@ -41,6 +43,7 @@ const LandingPage = (props) => {
          
     }
     
+    const {lastIndexRef} = InfiniteScroll(loadMorePosts,postLength,loading);
     useEffect(()=>{
 
         
@@ -65,22 +68,22 @@ const LandingPage = (props) => {
         <>
          <Route exact path="/">
          <Menu items={category}/>
-         <LandingCard items={posts} loadMorePosts={loadMorePosts}/>
-         {loading ? 
+         <LandingCard items={posts} loadMorePosts={loadMorePosts} lastIndexRef={lastIndexRef}/>
+         {/* {loading ? 
          <LoadingSpinner marginTop='3rem'/> 
          :
          postLength >= query.limit &&
          <div style={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:'.5rem',}}>
          <Button click={loadMorePosts} name="더 보기" />
          </div>
-         }
+         } */}
          </Route>
 
          <Route exact path={`/category/:id`}>
-         <LandingCard items={posts} loadMorePosts={loadMorePosts} />
-         <div style={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:'.5rem',}}>
+         <LandingCard items={posts} loadMorePosts={loadMorePosts} lastIndexRef={lastIndexRef}/>
+         {/* <div style={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:'.5rem',}}>
          <Button click={loadMorePosts} name="더 보기"/>
-         </div>
+         </div> */}
          </Route>
 {/* 
          {loading ? 

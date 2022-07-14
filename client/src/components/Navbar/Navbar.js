@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios';
 
-import {USER_SERVER} from '../../Config';
+import {USER_SERVER} from '../Config';
 import {withRouter} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';

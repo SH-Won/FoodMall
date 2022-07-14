@@ -2,13 +2,14 @@ import React from 'react'
 import {Link} from 'react-router-dom';
 
 const LandingCard = (props) => {
-
-    const {items} = props;
+    
+    const {items,lastIndexRef} = props;
+    const lastIndex = items.length - 1;
     return (
         <div className="container">
             <div className="card-container">
-            {items.map(item => (
-                <div className="card" key={item._id}>
+            {items.map((item,index) => (
+                <div className="card" key={item._id} ref={index === lastIndex ? lastIndexRef : null }>
                     <Link to={`/detail/${item._id}`}>
                     <div className="card-img">
                         <img src={item.images[0]}/>

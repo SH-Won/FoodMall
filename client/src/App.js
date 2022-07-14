@@ -6,8 +6,8 @@ import Auth from "./hoc/auth";
 //import LoginPage from "./views/LoginPage/LoginPage.js";
 //import RegisterPage from "./views/RegisterPage/RegisterPage.js";
 //import NavBar from "./views/NavBar/NavBar";
-import Navbar from './components/views/Navbar/Navbar'
-import Footer from "./components/views/Footer/Footer"
+import Navbar from './components/Navbar/Navbar'
+import Footer from "./components/Footer/Footer"
 import LoadingSpinner from './components/Utill/LoadingSpinner';
 import SideRecommend from './components/SideRecommend/SideRecommend';
 // import LandingPage from './_pages/LandingPage';
