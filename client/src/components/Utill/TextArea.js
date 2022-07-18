@@ -2,7 +2,6 @@ import React from 'react'
 
 const TextArea = (props) => {
     return (
-        // <div style={{textAlign:'center',width:'80%'}}>
         <textarea
             className="textarea"
             style={props.style}
@@ -11,7 +10,6 @@ const TextArea = (props) => {
             placeholder="입력하세요" 
               
         />
-        // </div>
     )
 }
 

@@ -7,7 +7,7 @@ import Layout from '../components/Utill/Layout';
 import LoadingSpinner from '../components/Utill/LoadingSpinner';
 import CommentList from '../components/Comment/CommentList';
 const CommentPage = ({match}) => {
-    console.log('comment Page')
+
     const dispatch = useDispatch();
     const {userData} = useSelector(state=>state.user);
     const {commentList} =useSelector(state => state.comment);
@@ -53,10 +53,8 @@ const CommentPage = ({match}) => {
 
     return (
         <Layout>
-
             <CommentForm {...commentProps}/>
             <CommentList commentList={commentList} userData={userData} postId={postId} isReply={false}/>
-            
         </Layout>
     )
 }

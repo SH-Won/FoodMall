@@ -2,15 +2,11 @@ import React,{useState} from 'react'
 import {useDispatch} from 'react-redux';
 import Button from '../Utill/Button';
 import CommentForm from './CommentForm';
-
 import {saveComment} from '../../_actions/comment_actions'
 
-
 const RootComment = (props) => {
-    console.log('rootComment Component');
     const dispatch = useDispatch();
     const {comment,userData,postId} = props;
-    console.log(comment._id);
     const [open,setOpen]=useState(false);
     const [commentValue,setCommentValue]=useState('')
 

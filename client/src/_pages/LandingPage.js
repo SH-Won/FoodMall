@@ -1,4 +1,4 @@
-import React,{useState,useEffect,useCallback} from 'react'
+import React,{useState,useEffect} from 'react'
 import {Route} from 'react-router-dom';
 import {getFirstPosts,getPosts} from '../_actions/post_actions';
 import useFetch from '../hook/useFetch';
@@ -6,7 +6,6 @@ import LandingCard from '../components/Landing/LandingCard';
 import '../styles/Landing.css';
 import {category} from '../datas/Data';
 import LoadingSpinner from '../components/Utill/LoadingSpinner';
-import Button from '../components/Utill/Button';
 import Menu from '../components/Landing/Menu';
 import InfiniteScroll from '../hook/InfiniteScroll';
 
@@ -24,7 +23,6 @@ const LandingPage = (props) => {
         null
         
     })
-    
     const {posts,postLength,loading} = useFetch([getFirstPosts,getPosts],query);
     
     const loadingStyle = {
@@ -39,63 +37,31 @@ const LandingPage = (props) => {
          let newQuery = {...query};
          newQuery.skip = newQuery.skip + newQuery.limit;
          setQuery(newQuery);
-         //setPageLoading(false);
-         
     }
-    
-    const {lastIndexRef} = InfiniteScroll(loadMorePosts,postLength,loading);
-    useEffect(()=>{
 
-        
+    const {lastIndexRef} = InfiniteScroll(loadMorePosts,postLength,loading);
+    
+    useEffect(()=>{
         if(!loading)
         setPageLoading(false);
-       
-
     },[loading]);
    // 처음 페이지 로드 => 
-
-   
-    
     
     if(pageLoading){
         return (
-       
         <LoadingSpinner {...loadingStyle}/>
         )
     }
-
     return (
         <>
          <Route exact path="/">
-         <Menu items={category}/>
-         <LandingCard items={posts} loadMorePosts={loadMorePosts} lastIndexRef={lastIndexRef}/>
-         {/* {loading ? 
-         <LoadingSpinner marginTop='3rem'/> 
-         :
-         postLength >= query.limit &&
-         <div style={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:'.5rem',}}>
-         <Button click={loadMorePosts} name="더 보기" />
-         </div>
-         } */}
+          <Menu items={category}/>
+          <LandingCard items={posts} loadMorePosts={loadMorePosts} lastIndexRef={lastIndexRef}/>
          </Route>
 
          <Route exact path={`/category/:id`}>
-         <LandingCard items={posts} loadMorePosts={loadMorePosts} lastIndexRef={lastIndexRef}/>
-         {/* <div style={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:'.5rem',}}>
-         <Button click={loadMorePosts} name="더 보기"/>
-         </div> */}
+          <LandingCard items={posts} loadMorePosts={loadMorePosts} lastIndexRef={lastIndexRef}/>
          </Route>
-{/* 
-         {loading ? 
-         <LoadingSpinner marginTop='3rem'/> 
-         :
-         postLength >= query.limit &&
-         <div style={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:'.5rem',}}>
-         <Button click={loadMorePosts} name="더 보기" />
-         </div>
-         } */}
-         
-         
         </>
     )
 }

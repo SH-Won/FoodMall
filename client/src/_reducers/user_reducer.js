@@ -9,9 +9,7 @@ import {
 
     ADD_USER_CART_ITEM,
     GET_USER_CART_ITEM,
-    DELETE_USER_CART_ITEM
-
-    
+    DELETE_USER_CART_ITEM    
 } from '../_actions/types';
  
 

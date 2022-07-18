@@ -4,10 +4,6 @@ const { User } = require("../models/User");
 const {Post} = require("../models/Post");
 const { auth } = require("../middleware/auth");
 
-//=================================
-//             User
-//=================================
-
 router.get("/auth", auth, (req, res) => {
     res.status(200).json({
         _id: req.user._id,
@@ -68,76 +64,6 @@ router.get("/logout", auth, (req, res) => {
         });
     });
 });
-/*
-router.get('/addCartItem',auth,(req,res)=>{
-    
-
-    User.findOne({_id:req.user._id},
-        (err,userInfo)=>{
-            let isExist = false;
-            userInfo.cart.forEach(cartItem =>{
-                if(cartItem.id === req.query.postId)
-                 isExist =true;
-            })
-            
-            if(isExist){
-                User.findOneAndUpdate(
-                    {_id:req.user._id,'cart.id':req.query.postId},
-                    {$inc:{'cart.$.quantity':1}},
-                    {new:true},
-                    ()=>{
-                        if(err) res.status(400).json({success:false,err})
-                        res.status(200).json(userInfo.cart);
-                    }
-                )
-            }
-            else{
-                User.findOneAndUpdate(
-                    {_id:req.user._id},
-                    {$push:{
-                        cart:{
-                            id:req.query.postId,
-                            quantity:1,
-                            date:Date.now(),
-                        }
-                    }},
-                    {new:true},
-                    (err,userInfo)=>{
-                        if(err) res.status(400).json({success:false,err})
-                        res.status(200).json(userInfo.cart)
-                    }
-                )
-            }
-        }
-        )
-
-})
-router.get('/removeCartItem',auth,(req,res)=>{
-    User.findOneAndUpdate(
-        {_id:req.user._id},
-        {$pull:{
-            cart:{
-                id:req.query.postId
-            }
-        }},
-        {new:true},
-        (err,userInfo)=>{
-            let cart = userInfo.cart;
-            let postIds = cart.map(item=>item.id);
-
-            Post.find({_id:{$in:postIds}})
-            .populate('writer')
-            .exec((err,cartDetail)=>{
-                if(err) res.status(400).json({success:false,err})
-                res.status(200).json({
-                    cart,cartDetail
-                })
-            })
-        }
-    )
-})
-*/
-
 
 router.get('/addCartItem',auth,(req,res)=>{
     User.findOne(

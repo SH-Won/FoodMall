@@ -15,8 +15,4 @@ const LoadingSpinner = (props) => {
     )
 }
 
-// LoadingSpinner.defaultProps ={
-
-// }
-
 export default LoadingSpinner

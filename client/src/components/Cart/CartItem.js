@@ -35,7 +35,6 @@ const CartItem = (props) => {
                     ))}
                 </tbody>
             </table>
-            
         </div>
     )
 }

@@ -1,4 +1,4 @@
-import React,{useState,useRef,useCallback,useEffect} from 'react'
+import React,{useRef,useCallback} from 'react'
 
 const InfiniteScroll = (callback,hasMore,loading) => {
     

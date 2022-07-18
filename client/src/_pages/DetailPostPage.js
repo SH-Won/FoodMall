@@ -13,9 +13,7 @@ import Information from '../components/DetailPost/Information';
 import TabMenu from '../components/DetailPost/TabMenu';
 import TabDetail from '../components/DetailPost/TabDetail';
 import TabBoard from '../components/DetailPost/TabBoard';
-import TabComment from '../components/DetailPost/TabComment';
-import Tab from '../components/DetailPost/Tab';
-import SideRecommend from '../components/SideRecommend/SideRecommend';
+
 const DetailPostPage = (props) => {
     const dispatch =useDispatch();
     const query = props.match.params.postId;
@@ -53,16 +51,13 @@ const DetailPostPage = (props) => {
     }
     
   
-    
     if(loading) return <LoadingSpinner {...loadingStyle}/>
 
     return (
         <div style={{position:'relative'}}>
-            
-            {/* <SideRecommend /> */}
             <Information post={post[0]} handleQuantity={handleQuantity} totalPrice={totalPrice}/>
             <div style={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:'.5rem'}}>
-            <Button name="장바구니" click={addToCart}/>
+             <Button name="장바구니" click={addToCart}/>
             </div>
 
             <TabMenu match={props.match}/>
@@ -70,15 +65,10 @@ const DetailPostPage = (props) => {
                 <TabDetail post={post[0]} />
              </Route>
              <Route exact path={`${props.match.path}/board`} >
-                  <TabBoard/>
+                <TabBoard/>
              </Route>
              <Route exact path={`${props.match.path}/comment`} component={CommentPage}/>
-                 
-                  {/* <Route path={`${props.match.path}/:name`} component={Tab}/>
-                 */}
-            
-            
-            
+             
         </div>
     )
 }

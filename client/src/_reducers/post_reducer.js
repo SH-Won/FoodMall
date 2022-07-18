@@ -30,7 +30,6 @@ export default function(state={images:[],posts:[],postDetail:[]},action){
             }
         case GET_POST_DETAIL:
             return{
-                // ...state, postDetail:action.payload
                 ...state, posts:action.payload
             }
         default : return state;

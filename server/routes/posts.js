@@ -53,14 +53,8 @@ router.post('/uploadPost',(req,res)=>{
 })
 
 router.get('/getPosts',(req,res)=>{
-//    console.log('searchValue',req.query.searchValue);
    let skip = req.query.skip ? parseInt(req.query.skip) : Number(0);
    let limit = req.query.limit ? parseInt(req.query.limit) : 100; 
-   //let order = req.body.order ? req.body.order :'desc';
-   //let sortBy = req.body.sortBy ? req.body.sortBy : "_id";
-  // let limit = req.body.limit? parseInt(req.body.limit) : 100;
-   //let skip = parseInt(req.body.skip);
-   //let findArgs ={};
    let filter = req.query.filter ? JSON.parse(req.query.filter) : '';
    let searchValue = req.query.searchValue ? req.query.searchValue :'';
    let findArgs={};
@@ -74,11 +68,7 @@ router.get('/getPosts',(req,res)=>{
            }
        }
    }
-   console.log(findArgs)
    //query는 다 스트링
-   
-   //console.log(filter);
-   //console.log(typeof filter)
    // findArgs = { category : [1,2,3,4,5,6 ...] }
    if(searchValue){
    Post.find(findArgs)
@@ -90,21 +80,16 @@ router.get('/getPosts',(req,res)=>{
        if (err) res.json({success:false,err})
        res.json(
            posts
-           
        );
-      
    })
    }
    else{
-       console.log(skip,'skip',limit,'limit');
-       
     Post.find(findArgs)
     .skip(skip)
     .limit(limit)
     .populate('writer')
     .exec((err,posts)=>{
         if (err) res.json({success:false,err})
-        console.log('posts',posts);
         res.json(posts);
        
     })
@@ -127,7 +112,6 @@ router.get('/getPostDetail',(req,res)=>{
     .exec((err,post)=>{
         if(err) res.status(400).json({success:false,err})
         res.status(200).json(post);
-        console.log(post);
     })
 })
 
