@@ -1,12 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-const TabComment = (props) => {
+const TabComment = props => {
+    return <div>코멘트</div>;
+};
 
-    return (
-        <div>
-            코멘트
-        </div>
-    )
-}
-
-export default TabComment
+export default TabComment;

@@ -2,13 +2,13 @@ export const LOGIN_USER = 'login_user';
 export const REGISTER_USER = 'register_user';
 export const AUTH_USER = 'auth_user';
 export const LOGOUT_USER = 'logout_user';
-export const ADD_CART_ITEM='add_cart_item';
-export const GET_CART_ITEM_DETAIL='get_cart_item_detail';
+export const ADD_CART_ITEM = 'add_cart_item';
+export const GET_CART_ITEM_DETAIL = 'get_cart_item_detail';
 export const REMOVE_CART_ITEM = 'remove_cart_item';
 
-export const ADD_USER_CART_ITEM='add_user_cart_item';
-export const GET_USER_CART_ITEM='get_user_cart_item';
-export const DELETE_USER_CART_ITEM='delete_user_cart_item'
+export const ADD_USER_CART_ITEM = 'add_user_cart_item';
+export const GET_USER_CART_ITEM = 'get_user_cart_item';
+export const DELETE_USER_CART_ITEM = 'delete_user_cart_item';
 
 export const UPLOAD_FILES = 'upload_file';
 export const UPLOAD_POST = 'upload_post';

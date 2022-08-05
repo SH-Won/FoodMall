@@ -1,11 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const BoardPage = () => {
-    return (
-        <div>
-            
-        </div>
-    )
-}
+    return <div></div>;
+};
 
-export default BoardPage
+export default BoardPage;

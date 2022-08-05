@@ -1,80 +1,71 @@
-a{
+a {
     text-decoration: none;
-    color:black;
+    color: black;
 }
 
-.information-container{
-    width:100%;
-    display:flex;
+.information-container {
+    width: 100%;
+    display: flex;
     justify-content: space-between;
-    
 }
-.carousel{
-   flex: 1 1 45%;
-
-}
-.explain{
+.carousel {
     flex: 1 1 45%;
-
 }
-.explain-title{
-    padding:.3rem;
-    margin: .3rem;
+.explain {
+    flex: 1 1 45%;
+}
+.explain-title {
+    padding: 0.3rem;
+    margin: 0.3rem;
     box-sizing: border-box;
     border-bottom: 1px solid #dfdede;
 }
-.explain-title > p{
-
+.explain-title > p {
 }
-.explain-price, .explain-total{
-    padding:.3rem;
-    margin:.3rem;
+.explain-price,
+.explain-total {
+    padding: 0.3rem;
+    margin: 0.3rem;
     border-bottom: 1px solid #dfdede;
 }
 
-dl{
-    display:flex;
-    margin:.3rem;
-    
+dl {
+    display: flex;
+    margin: 0.3rem;
 }
-dt{
+dt {
     flex: 0 0 30%;
-    margin:.1rem;
+    margin: 0.1rem;
 }
 
-.tab-menu{
-    margin-top:1rem;
+.tab-menu {
+    margin-top: 1rem;
     list-style: none;
-    width:100%;
-    display:flex;
-    
-    
+    width: 100%;
+    display: flex;
 }
-.tab-item{
-    margin:0;
+.tab-item {
+    margin: 0;
     flex: 1 1 33%;
     text-align: center;
     font-size: 1.2rem;
-    border:1px solid #dfdede;
+    border: 1px solid #dfdede;
     border-bottom: 1px solid black;
-
 }
 
-.tab-item.act{
-    border:1px solid black;
-    border-bottom:0;
-
+.tab-item.act {
+    border: 1px solid black;
+    border-bottom: 0;
 }
 
-@media screen and (max-width:600px) {
-    .information-container{
+@media screen and (max-width: 600px) {
+    .information-container {
         flex-direction: column;
     }
-    .carousel{
-        flex: 1
+    .carousel {
+        flex: 1;
     }
-    .explain{
-        flex: 1
+    .explain {
+        flex: 1;
     }
-    
 }

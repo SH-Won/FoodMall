@@ -1,11 +1,11 @@
-import React from 'react'
-import Carousel from '../Utill/Carousel'
+import React from 'react';
+import Carousel from '../Utill/Carousel';
 
-const Information = ({post,handleQuantity,totalPrice}) => {
+const Information = ({ post, handleQuantity, totalPrice }) => {
     return (
         <section className="information-container">
             <div className="carousel">
-              <Carousel carouselImages={post.images}/>
+                <Carousel carouselImages={post.images} />
             </div>
 
             <div className="explain">
@@ -21,7 +21,7 @@ const Information = ({post,handleQuantity,totalPrice}) => {
                     <dl>
                         <dt>수량</dt>
                         <select onChange={handleQuantity}>
-                            {Array.from({length:5},(_,i) => i+1).map((number,index) =>(
+                            {Array.from({ length: 5 }, (_, i) => i + 1).map((number, index) => (
                                 <option key={number} value={number}>
                                     {number}
                                 </option>
@@ -38,7 +38,7 @@ const Information = ({post,handleQuantity,totalPrice}) => {
                 </div>
             </div>
         </section>
-    )
-}
+    );
+};
 
-export default Information
+export default Information;

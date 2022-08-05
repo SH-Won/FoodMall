@@ -1,59 +1,53 @@
-.comment-wrap{
-    width:90%;
-    margin:0 auto;
+.comment-wrap {
+    width: 90%;
+    margin: 0 auto;
 }
-.comment-form{
-    width:90%;
+.comment-form {
+    width: 90%;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    padding:.5rem;
+    padding: 0.5rem;
     box-sizing: border-box;
 }
-.single-comment{
+.single-comment {
     box-sizing: border-box;
     border-bottom: 1px solid gray;
-    padding:.3rem;
-    margin-bottom: .5rem;
+    padding: 0.3rem;
+    margin-bottom: 0.5rem;
 }
 
-.root-comment-container{
+.root-comment-container {
     box-sizing: border-box;
-    
-    width:100%;
-    margin-bottom: .7rem;
-    
+
+    width: 100%;
+    margin-bottom: 0.7rem;
 }
-.root-comment-user{
-    display:flex;
+.root-comment-user {
+    display: flex;
     align-items: center;
-    
 }
-.root-comment-user > img{
-    width:25px;
-    height:25px;
+.root-comment-user > img {
+    width: 25px;
+    height: 25px;
     border-radius: 50%;
 }
-.root-comment-user > span{
-    margin-left:.5rem;
+.root-comment-user > span {
+    margin-left: 0.5rem;
     font-size: 0.7rem;
 }
-.root-comment-value{
-    margin-left:3rem;
-    
-
+.root-comment-value {
+    margin-left: 3rem;
 }
-.reply-comment{
-    
-    width:100%;
-    margin-top:.5rem;
-    height:0;
+.reply-comment {
+    width: 100%;
+    margin-top: 0.5rem;
+    height: 0;
     overflow-y: hidden;
-    transition:height 1s;
+    transition: height 1s;
     box-sizing: border-box;
-
 }
-.reply-comment.act{
-    border-top: 1px dotted rgb(121, 121, 38) ;
-    height:auto
+.reply-comment.act {
+    border-top: 1px dotted rgb(121, 121, 38);
+    height: auto;
 }

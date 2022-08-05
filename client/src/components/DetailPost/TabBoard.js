@@ -1,11 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const TabBoard = () => {
-    return (
-        <div>
-            보드
-        </div>
-    )
-}
+    return <div>보드</div>;
+};
 
-export default TabBoard
+export default TabBoard;

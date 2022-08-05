@@ -1,12 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-const TabDetail = ({post}) => {
+const TabDetail = ({ post }) => {
+    return <div>상세정보</div>;
+};
 
-    return (
-        <div>
-            상세정보
-        </div>
-    )
-}
-
-export default TabDetail
+export default TabDetail;

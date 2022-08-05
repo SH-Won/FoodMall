@@ -1,79 +1,73 @@
-.navbar a{
+.navbar a {
     text-decoration: none;
-    color:black;
+    color: black;
 }
 
-.navbar{
-    display:flex;
-    width:100%;
-    
+.navbar {
+    display: flex;
+    width: 100%;
+
     position: sticky;
-    top:0;
+    top: 0;
     z-index: 5;
-    
-    background: rgba(255,255,255,0.9);
+
+    background: rgba(255, 255, 255, 0.9);
     border-bottom: 1px solid #ededed;
     align-items: center;
     justify-content: space-between;
-    
 }
-.navbar svg{
-    
+.navbar svg {
     font-size: 1.5rem;
-    margin-top:5px;
+    margin-top: 5px;
     text-align: center;
 }
 
-.navbar-list{
-    display:flex;
+.navbar-list {
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    width:100%;
+    width: 100%;
 }
-.navbar-list > span{
-    margin-left:45px;
+.navbar-list > span {
+    margin-left: 45px;
     font-size: 1.5rem;
     font-weight: 500;
-    
 }
-.navbar-left-list, .navbar-right-list{
+.navbar-left-list,
+.navbar-right-list {
     list-style: none;
     text-decoration: none;
-    display:flex;
-    padding:0;
-    margin:0;
+    display: flex;
+    padding: 0;
+    margin: 0;
     align-items: center;
     justify-content: center;
 }
 .navbar-left-list {
-    margin-left:1rem;
+    margin-left: 1rem;
 }
-.navbar-right-list{
-    margin-right:1rem;
+.navbar-right-list {
+    margin-right: 1rem;
 }
 
-
-li{
-    margin:0 0.5rem;
+li {
+    margin: 0 0.5rem;
 }
-.shopping-cart{
-    position:relative;
-    display:flex;
+.shopping-cart {
+    position: relative;
+    display: flex;
     flex-direction: column;
-    
 }
-.shopping-cart svg{
-    
-    
+.shopping-cart svg {
 }
-.shopping-cart-number{
-    position:absolute;
-    top:-2px;
-    right:-8px;
+.shopping-cart-number {
+    position: absolute;
+    top: -2px;
+    right: -8px;
     background-color: red;
-    color:white;
-    padding:.1rem .35rem;
+    color: white;
+    padding: 0.1rem 0.35rem;
     border-radius: 50%;
-    font-size:.8rem;
+    font-size: 0.8rem;
     font-weight: 500;
 }

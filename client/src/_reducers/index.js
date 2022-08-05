@@ -8,7 +8,7 @@ const rootReducer = combineReducers({
     user,
     post,
     comment,
-    test
+    test,
 });
 
 export default rootReducer;
